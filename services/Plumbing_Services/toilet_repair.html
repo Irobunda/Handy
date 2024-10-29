@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Services:Toilet Repair</title>
+    <link rel="stylesheet" href="../../styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+            <div class="logo">
+                <a href="../../index.html" class="home-link">Handyman</a>
+            </div>
+        <nav class="nav-links">
+            <a href="../../service.html">Services</a>
+            <a href="#">Visitor</a>
+            <a href="#">Become a Pro</a>
+            <a href="#">FAQ</a>
+        </nav>
+    </header>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Handyman Services</title>
+        <link rel="stylesheet" href="../../styles.css">
+    </head>
+    <body>
+        
+     <!-- Banner Image -->
+     <section class="banner">
+        <img src="../../images/pipe_installation_banner.jpg" alt="Pipe Installation Banner" class="banner-image">
+    </section>
+
+    <!-- Main Content for Toilet Repair -->
+    <div class="content-flex-container">
+        <!-- Toilet Repair Content -->
+        <section class="toilet-repair-content">
+            <h1>Toilet Repair & Services</h1>
+            <p>
+                A malfunctioning toilet is an inconvenience no one wants to deal with. Our expert toilet repair services can fix everything from simple clogs to complex issues like leaks, running toilets, or broken flush mechanisms.
+            </p>
+            <p>
+                Whether you need a quick repair or a complete replacement, we ensure fast, reliable, and professional service. No job is too small or too complicated for our experienced team.
+            </p>
+
+            <h2>Why Choose Us for Toilet Repairs?</h2>
+            <ul>
+                <li>Fast and Efficient: We quickly identify the problem and offer immediate solutions to get your toilet working again.</li>
+                <li>Affordable Pricing: Our transparent pricing ensures no hidden fees, and we offer the best value for high-quality repairs.</li>
+                <li>Comprehensive Solutions: From minor fixes to full replacements, we handle it all, ensuring your toilet functions properly.</li>
+                <li>24/7 Availability: Toilets can malfunction at any time, and we’re available whenever you need us.</li>
+                <li>Long-lasting Repairs: We use high-quality parts and proven methods to ensure long-term results for your toilet repairs.</li>
+            </ul>
+        </section>
+
+        <!-- Form Section -->
+        <section class="quote-form-container">
+            <h2>Get a Price Estimate for Toilet Repair</h2>
+
+            <form id="toiletRepairForm">
+                <!-- Contact Information -->
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+                <label for="address">Address (including unit number if applicable):</label>
+                <input type="text" id="address" name="address" required>
+
+                <!-- Type of Toilet Repair -->
+                <label for="repairType">What type of toilet repair is needed?</label>
+                <select id="repairType" name="repairType" required>
+                    <option value="cloggedToilet">Clogged Toilet</option>
+                    <option value="leakyToilet">Leaky Toilet</option>
+                    <option value="runningToilet">Running Toilet</option>
+                    <option value="flushMechanism">Broken Flush Mechanism</option>
+                    <option value="fullReplacement">Toilet Replacement</option>
+                </select>
+
+                <!-- Replacement or Repair -->
+                <label for="replacement">Is this a repair or a full replacement?</label>
+                <select id="replacement" name="replacement" required>
+                    <option value="repair">Repair</option>
+                    <option value="replacement">Full Replacement</option>
+                </select>
+
+                <!-- Access to Toilet Location -->
+                <label for="accessDetails">Is the toilet location easy to access? (Yes/No, and details if relevant):</label>
+                <input type="text" id="accessDetails" name="accessDetails" placeholder="Yes/No. Please specify any difficulties.">
+
+                <!-- Preferred Time for Service -->
+                <label for="preferredTime">Preferred Time for Repair:</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Request</button>
+            </form>
+
+            <div id="priceOutput" class="price-output"></div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('toiletRepairForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for calculation
+
+            // Get values from the form
+            const repairType = document.getElementById('repairType').value;
+            const replacement = document.getElementById('replacement').value;
+            const accessDetails = document.getElementById('accessDetails').value;
+            const preferredTime = document.getElementById('preferredTime').value; // Get the time
+
+            // Base rate calculation
+            const baseRate = repairType === 'fullReplacement' ? 250 : 150; // Full replacement costs more
+            let replacementCost = replacement === 'replacement' ? 100 : 0; // Extra cost for replacement
+
+            // Additional cost for hard-to-access toilet locations
+            let accessCost = accessDetails.toLowerCase().includes('no') ? 50 : 0;
+
+            // Calculate total cost
+            const totalCost = baseRate + replacementCost + accessCost;
+
+            // Display the calculated price and preferred time
+            document.getElementById('priceOutput').innerHTML = `
+                <h3>Estimated Price for Toilet Repair</h3>
+                <p>The estimated cost for your toilet repair service is <strong>$${totalCost.toFixed(2)}</strong>.</p>
+                <p>Your preferred time for repair is: <strong>${preferredTime}</strong>.</p>
+            `;
+        });
+    </script>
+
+</body>
+</html>

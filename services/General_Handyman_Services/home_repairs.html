@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home Repair Services</title>
+    <link rel="stylesheet" href="../../styles.css"> <!-- Adjust path if necessary -->
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="logo">
+            <a href="../../index.html" class="home-link">Handyman</a>
+        </div>
+        <nav class="nav-links">
+            <a href="service.html">Services</a>
+            <a href="#">Visitor</a>
+            <a href="#">Become a Pro</a>
+            <a href="#">FAQ</a>
+        </nav>
+    </header>
+
+    <!-- Banner Image -->
+    <section class="banner">
+        <img src="../../images/handy_service.jpg" alt="Fixture Installation Banner" class="banner-image">
+    </section>
+
+    <!-- Main Content for Home Repair Services -->
+    <div class="content-flex-container">
+        <!-- Home Repair Content -->
+        <section class="home-repair-content">
+            <h1>Home Repair Services</h1>
+            <p>
+                Your home is your most valuable asset, and keeping it in good shape is essential. Whether you need minor fixes, structural repairs, or general maintenance, our professional team is here to help. We specialize in a wide range of home repairs, from fixing doors and windows to repairing walls, ceilings, and plumbing issues.
+            </p>
+            <p>
+                No matter the size or complexity of the job, we provide high-quality services that ensure your home is functional and looking its best. We pride ourselves on delivering efficient, reliable, and affordable solutions for all your home repair needs.
+            </p>
+
+            <h2>Why Choose Us ?</h2>
+            <ul>
+                <li>Skilled Technicians: Our team is trained to handle a variety of home repairs, ensuring top-quality work every time.</li>
+                <li>Wide Range of Services: From drywall repair to plumbing fixes, we cover a broad range of home repair tasks.</li>
+                <li>Fast and Efficient: We understand the importance of getting repairs done quickly and without hassle.</li>
+                <li>Transparent Pricing: We offer clear, upfront pricing with no hidden fees.</li>
+                <li>Preventive Care: We help you prevent future issues with expert advice and proactive maintenance.</li>
+            </ul>
+        </section>
+
+        <!-- Form Section -->
+        <section class="quote-form-container">
+            <h2>Get a Price Estimate </h2>
+
+            <form id="homeRepairForm">
+                <!-- Contact Information -->
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+                <label for="address">Address (including unit number if applicable):</label>
+                <input type="text" id="address" name="address" required>
+
+                <!-- Type of Repair -->
+                <label for="repairType">What type of repair do you need?</label>
+                <select id="repairType" name="repairType" required>
+                    <option value="plumbing">Plumbing Repairs</option>
+                    <option value="electrical">Electrical Repairs</option>
+                    <option value="carpentry">Carpentry</option>
+                    <option value="drywall">Drywall Repair</option>
+                    <option value="roofing">Roofing</option>
+                    <option value="other">Other (please specify)</option>
+                </select>
+                <input type="text" id="customRepair" name="customRepair" placeholder="If other, please specify">
+
+                <!-- Special Requirements -->
+                <label for="specialRequirements">Any special requirements or instructions?</label>
+                <input type="text" id="specialRequirements" name="specialRequirements" placeholder="Please specify if needed">
+
+                <!-- Preferred Time for Service -->
+                <label for="preferredTime">Preferred Time for Service:</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Request</button>
+            </form>
+
+            <div id="priceOutput" class="price-output"></div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('homeRepairForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for calculation
+
+            // Get values from the form
+            const repairType = document.getElementById('repairType').value;
+            const specialRequirements = document.getElementById('specialRequirements').value;
+            const preferredTime = document.getElementById('preferredTime').value; // Get the time
+
+            // Base rate calculation
+            const baseRate = repairType === 'plumbing' || repairType === 'electrical' ? 150 : 100;
+            let customCost = specialRequirements ? 50 : 0; // Extra charge for custom or difficult requirements
+
+            // Calculate total cost
+            const totalCost = baseRate + customCost;
+
+            // Display the calculated price and preferred time
+            document.getElementById('priceOutput').innerHTML = `
+                <h3>Estimated Price for Home Repair Services</h3>
+                <p>The estimated cost for your home repair is <strong>$${totalCost.toFixed(2)}</strong>.</p>
+                <p>Your preferred time for service is: <strong>${preferredTime}</strong>.</p>
+            `;
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Services:Water Heater Installation</title>
+    <link rel="stylesheet" href="../../styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+            <div class="logo">
+                <a href="../../index.html" class="home-link">Handyman</a>
+            </div>
+        <nav class="nav-links">
+            <a href="../../service.html">Services</a>
+            <a href="#">Visitor</a>
+            <a href="#">Become a Pro</a>
+            <a href="#">FAQ</a>
+        </nav>
+    </header>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Handyman Services</title>
+        <link rel="stylesheet" href="../../styles.css">
+    </head>
+    <body>
+        
+     <!-- Banner Image -->
+     <section class="banner">
+        <img src="../../Images/electrical_service.jpg" alt="Pipe Installation Banner" class="banner-image">
+    </section>
+
+
+    
+    <!-- Main Content for Lighting Installation -->
+    <div class="content-flex-container">
+        <!-- Lighting Installation Content -->
+        <section class="lighting-installation-content">
+            <h1>Lighting Installation & Repairs</h1>
+            <p>
+                Proper lighting enhances the ambiance and safety of your home or business. Whether you’re installing new lighting fixtures or repairing existing ones, we offer comprehensive lighting installation and repair services.
+            </p>
+            <p>
+                From installing energy-efficient LED lighting to repairing outdoor security lights, our licensed professionals are ready to tackle all your lighting needs. We guarantee safe and efficient service, ensuring your lights are working perfectly in no time.
+            </p>
+
+            <h2>Why Choose Us?</h2>
+            <ul>
+                <li>Skilled Professionals: Our certified electricians ensure your lighting installation or repair is done safely and efficiently.</li>
+                <li>Energy-Efficient Solutions: We install energy-saving lighting solutions to help reduce your electricity bills.</li>
+                <li>Comprehensive Service: From indoor to outdoor lighting, we offer a wide range of lighting services.</li>
+                <li>Clear Pricing: Transparent pricing with no hidden fees means you know the cost upfront before we begin.</li>
+                <li>Fast Turnaround: We respect your time and complete installations and repairs quickly while maintaining quality.</li>
+            </ul>
+        </section>
+
+        <!-- Form Section -->
+        <section class="quote-form-container">
+            <h2>Get a Price Estimate</h2>
+
+            <form id="lightingForm">
+                <!-- Contact Information -->
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+                <label for="address">Address (including unit number if applicable):</label>
+                <input type="text" id="address" name="address" required>
+
+                <!-- Type of Lighting Service -->
+                <label for="lightingType">What type of lighting service do you need?</label>
+                <select id="lightingType" name="lightingType" required>
+                    <option value="newInstallation">New Installation</option>
+                    <option value="repairExisting">Repair Existing Lighting</option>
+                    <option value="upgradeToLED">Upgrade to LED</option>
+                    <option value="outdoorLighting">Outdoor Security Lighting</option>
+                </select>
+
+                <!-- Number of Fixtures -->
+                <label for="numFixtures">How many fixtures/lights?</label>
+                <input type="number" id="numFixtures" name="numFixtures" min="1" required>
+
+                <!-- Access to Lighting Location -->
+                <label for="accessDetails">Is the lighting location easy to access? (Yes/No, and details if relevant):</label>
+                <input type="text" id="accessDetails" name="accessDetails" placeholder="Yes/No. Please specify any difficulties.">
+
+                <!-- Preferred Time for Service -->
+                <label for="preferredTime">Preferred Time for Service:</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Request</button>
+            </form>
+
+            <div id="priceOutput" class="price-output"></div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('lightingForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for calculation
+
+            // Get values from the form
+            const lightingType = document.getElementById('lightingType').value;
+            const numFixtures = document.getElementById('numFixtures').value;
+            const accessDetails = document.getElementById('accessDetails').value;
+            const preferredTime = document.getElementById('preferredTime').value; // Get the time
+
+            // Base rate calculation
+            const baseRate = lightingType === 'newInstallation' || lightingType === 'upgradeToLED' ? 150 : 100;
+            let fixtureCost = numFixtures * 30; // Charge $30 per fixture for installation/repair
+            let accessCost = accessDetails.toLowerCase().includes('no') ? 50 : 0; // Extra charge for hard-to-access locations
+
+            // Calculate total cost
+            const totalCost = baseRate + fixtureCost + accessCost;
+
+            // Display the calculated price and preferred time
+            document.getElementById('priceOutput').innerHTML = `
+                <h3>Estimated Price for Lighting Services</h3>
+                <p>The estimated cost for your lighting service is <strong>$${totalCost.toFixed(2)}</strong>.</p>
+                <p>Your preferred time for service is: <strong>${preferredTime}</strong>.</p>
+            `;
+        });
+    </script>
+
+</body>
+</html>

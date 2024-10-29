@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Services:Carpet Cleaning Services</title>
+    <link rel="stylesheet" href="../../styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+            <div class="logo">
+                <a href="../../index.html" class="home-link">Handyman</a>
+            </div>
+        <nav class="nav-links">
+            <a href="../../service.html">Services</a>
+            <a href="#">Visitor</a>
+            <a href="#">Become a Pro</a>
+            <a href="#">FAQ</a>
+        </nav>
+    </header>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Handyman Services</title>
+        <link rel="stylesheet" href="../../styles.css">
+    </head>
+    <body>
+        
+     <!-- Banner Image -->
+     <section class="banner">
+        <img src="../../images/cleaning_services.jpg" alt="cleaning services Banner" class="banner-image">
+    </section>
+
+
+    <!-- Main Content for Carpet Cleaning Services -->
+    <div class="content-flex-container">
+        <!-- Carpet Cleaning Content -->
+        <section class="carpet-cleaning-content">
+            <h1>Carpet Cleaning Services</h1>
+            <p>
+                Keep your carpets looking fresh and clean with our professional carpet cleaning services. From routine cleanings to deep stain removal, our team uses top-of-the-line equipment to rejuvenate your carpets and restore their original beauty.
+            </p>
+            <p>
+                We specialize in both residential and commercial carpet cleaning, using eco-friendly products that are safe for your family and pets. Whether you need to remove stubborn stains, eliminate pet odors, or simply freshen up your carpets, we have you covered.
+            </p>
+
+            <h2>Why Choose Us for Carpet Cleaning?</h2>
+            <ul>
+                <li>Professional Equipment: We use industry-leading carpet cleaning machines and eco-friendly products.</li>
+                <li>Deep Cleaning Solutions: Our deep cleaning methods remove dirt, allergens, and stains from your carpets.</li>
+                <li>Experienced Technicians: Our technicians are trained to handle all types of carpets and cleaning challenges.</li>
+                <li>Flexible Scheduling: We offer convenient scheduling options to fit your busy lifestyle.</li>
+                <li>Affordable Pricing: No hidden fees – just clear, upfront pricing for all services.</li>
+            </ul>
+        </section>
+
+        <!-- Form Section -->
+        <section class="quote-form-container">
+            <h2>Get a Price Estimate for Carpet Cleaning</h2>
+
+            <form id="carpetCleaningForm">
+                <!-- Contact Information -->
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+                <label for="address">Address (including unit number if applicable):</label>
+                <input type="text" id="address" name="address" required>
+
+                <!-- Type of Cleaning Service -->
+                <label for="serviceType">What type of carpet cleaning service do you need?</label>
+                <select id="serviceType" name="serviceType" required>
+                    <option value="basicCleaning">Basic Cleaning</option>
+                    <option value="deepCleaning">Deep Cleaning</option>
+                    <option value="stainRemoval">Stain Removal</option>
+                    <option value="petOdorRemoval">Pet Odor Removal</option>
+                </select>
+
+                <!-- Carpet Size -->
+                <label for="carpetSize">What is the approximate size of the area (in square feet)?</label>
+                <input type="number" id="carpetSize" name="carpetSize" min="100" required>
+
+                <!-- Access to Cleaning Site -->
+                <label for="accessDetails">Is the cleaning site easy to access? (Yes/No, and details if relevant):</label>
+                <input type="text" id="accessDetails" name="accessDetails" placeholder="Yes/No. Please specify any difficulties.">
+
+                <!-- Preferred Time for Service -->
+                <label for="preferredTime">Preferred Time for Service:</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Request</button>
+            </form>
+
+            <div id="priceOutput" class="price-output"></div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('carpetCleaningForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for calculation
+
+            // Get values from the form
+            const serviceType = document.getElementById('serviceType').value;
+            const carpetSize = document.getElementById('carpetSize').value;
+            const accessDetails = document.getElementById('accessDetails').value;
+            const preferredTime = document.getElementById('preferredTime').value; // Get the time
+
+            // Base rate calculation
+            const baseRate = serviceType === 'deepCleaning' || serviceType === 'stainRemoval' ? 150 : 100;
+            let sizeCost = carpetSize * 0.25; // Charge $0.25 per square foot
+            let accessCost = accessDetails.toLowerCase().includes('no') ? 50 : 0; // Extra charge for hard-to-access sites
+
+            // Calculate total cost
+            const totalCost = baseRate + sizeCost + accessCost;
+
+            // Display the calculated price and preferred time
+            document.getElementById('priceOutput').innerHTML = `
+                <h3>Estimated Price for Carpet Cleaning</h3>
+                <p>The estimated cost for your carpet cleaning service is <strong>$${totalCost.toFixed(2)}</strong>.</p>
+                <p>Your preferred time for service is: <strong>${preferredTime}</strong>.</p>
+            `;
+        });
+    </script>
+
+</body>
+</html>

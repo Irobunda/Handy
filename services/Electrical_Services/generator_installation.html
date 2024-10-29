@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Services:Water Heater Installation</title>
+    <link rel="stylesheet" href="../../styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+            <div class="logo">
+                <a href="../../index.html" class="home-link">Handyman</a>
+            </div>
+        <nav class="nav-links">
+            <a href="../../service.html">Services</a>
+            <a href="#">Visitor</a>
+            <a href="#">Become a Pro</a>
+            <a href="#">FAQ</a>
+        </nav>
+    </header>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Handyman Services</title>
+        <link rel="stylesheet" href="../../styles.css">
+    </head>
+    <body>
+        
+     <!-- Banner Image -->
+     <section class="banner">
+        <img src="../../Images/electrical_service.jpg" alt="Pipe Installation Banner" class="banner-image">
+    </section>
+
+
+    <!-- Main Content for Generator Installation and Maintenance -->
+    <div class="content-flex-container">
+        <!-- Generator Installation Content -->
+        <section class="generator-installation-content">
+            <h1>Generator Installation and Maintenance Services</h1>
+            <p>
+                Ensure uninterrupted power supply to your home or business with our professional generator installation and maintenance services. Whether you need a backup generator for your residence or a commercial-grade generator for your business, our team of certified professionals can help with reliable installation and regular maintenance.
+            </p>
+            <p>
+                We specialize in a wide range of generators, including standby, portable, and industrial generators. Our services also cover routine maintenance, ensuring your generator is always ready to kick in during a power outage, as well as emergency repair services to keep your system running efficiently.
+            </p>
+
+            <h2>Why Choose Us?</h2>
+            <ul>
+                <li>Certified Technicians: Our electricians are certified to install and maintain all types of generators, from small home units to large industrial systems.</li>
+                <li>Custom Installations: We offer customized solutions based on your power requirements and space availability.</li>
+                <li>Comprehensive Maintenance: We provide regular maintenance plans to keep your generator in top shape.</li>
+                <li>Transparent Pricing: No hidden fees or surprises, just upfront pricing and excellent service.</li>
+                <li>24/7 Emergency Services: We offer emergency repair services, ensuring that your generator is always ready when you need it most.</li>
+            </ul>
+        </section>
+
+        <!-- Form Section -->
+        <section class="quote-form-container">
+            <h2>Get a Price Estimate</h2>
+
+            <form id="generatorForm">
+                <!-- Contact Information -->
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+                <label for="address">Address (including unit number if applicable):</label>
+                <input type="text" id="address" name="address" required>
+
+                <!-- Type of Generator Service -->
+                <label for="serviceType">What type of generator service do you need?</label>
+                <select id="serviceType" name="serviceType" required>
+                    <option value="installation">Installation</option>
+                    <option value="maintenance">Routine Maintenance</option>
+                    <option value="repair">Repair</option>
+                </select>
+
+                <!-- Type of Generator -->
+                <label for="generatorType">What type of generator do you have or need installed?</label>
+                <select id="generatorType" name="generatorType" required>
+                    <option value="portable">Portable Generator</option>
+                    <option value="standby">Standby Generator</option>
+                    <option value="industrial">Industrial Generator</option>
+                </select>
+
+                <!-- Power Capacity -->
+                <label for="powerCapacity">What is the power capacity (in kW) of the generator?</label>
+                <input type="number" id="powerCapacity" name="powerCapacity" min="1" required>
+
+                <!-- Access to Installation/Maintenance Site -->
+                <label for="accessDetails">Is the installation or maintenance site easy to access? (Yes/No, and details if relevant):</label>
+                <input type="text" id="accessDetails" name="accessDetails" placeholder="Yes/No. Please specify any difficulties.">
+
+                <!-- Preferred Time for Service -->
+                <label for="preferredTime">Preferred Time for Service:</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Request</button>
+            </form>
+
+            <div id="priceOutput" class="price-output"></div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('generatorForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for calculation
+
+            // Get values from the form
+            const serviceType = document.getElementById('serviceType').value;
+            const generatorType = document.getElementById('generatorType').value;
+            const powerCapacity = document.getElementById('powerCapacity').value;
+            const accessDetails = document.getElementById('accessDetails').value;
+            const preferredTime = document.getElementById('preferredTime').value; // Get the time
+
+            // Base rate calculation
+            const baseRate = serviceType === 'installation' ? 500 : serviceType === 'maintenance' ? 200 : 300;
+            let generatorCost = generatorType === 'industrial' ? 150 : generatorType === 'standby' ? 100 : 50;
+            let powerCapacityCost = powerCapacity * 10; // Charge $10 per kW
+            let accessCost = accessDetails.toLowerCase().includes('no') ? 50 : 0; // Extra charge for hard-to-access sites
+
+            // Calculate total cost
+            const totalCost = baseRate + generatorCost + powerCapacityCost + accessCost;
+
+            // Display the calculated price and preferred time
+            document.getElementById('priceOutput').innerHTML = `
+                <h3>Estimated Price for Generator Services</h3>
+                <p>The estimated cost for your generator service is <strong>$${totalCost.toFixed(2)}</strong>.</p>
+                <p>Your preferred time for service is: <strong>${preferredTime}</strong>.</p>
+            `;
+        });
+    </script>
+
+</body>
+</html>
+

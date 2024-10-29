@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Indoor and Outdoor Painting Services</title>
+    <link rel="stylesheet" href="../../styles.css"> <!-- Adjust path if necessary -->
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="logo">
+            <a href="../../index.html" class="home-link">Handyman</a>
+        </div>
+        <nav class="nav-links">
+            <a href="service.html">Services</a>
+            <a href="#">Visitor</a>
+            <a href="#">Become a Pro</a>
+            <a href="#">FAQ</a>
+        </nav>
+    </header>
+
+    <!-- Banner Image -->
+    <section class="banner">
+        <img src="../../images/handy_service.jpg" alt="Fixture Installation Banner" class="banner-image">
+    </section>
+
+    <!-- Main Content for Painting Services -->
+    <div class="content-flex-container">
+        <!-- Painting Services Content -->
+        <section class="painting-services-content">
+            <h1>Indoor and Outdoor Painting Services</h1>
+            <p>
+                Refresh the look of your home with our professional painting services. Whether you’re looking to update your interior or give your home’s exterior a fresh new look, we provide high-quality indoor and outdoor painting services. We work with a variety of surfaces and paint types to ensure a flawless finish.
+            </p>
+            <p>
+                Our team specializes in both residential and commercial painting, ensuring each project is completed to the highest standards. We offer customized solutions based on the type of paint, surface preparation, and specific requirements of each space.
+            </p>
+
+            <h2>Why Choose Us ?</h2>
+            <ul>
+                <li>Professional Painters: Our skilled team has years of experience in painting both interiors and exteriors.</li>
+                <li>High-Quality Materials: We use top-quality paints and primers to ensure durability and a lasting finish.</li>
+                <li>Custom Solutions: We offer personalized recommendations for paint colors, finishes, and styles to suit your space.</li>
+                <li>Thorough Preparation: Our process includes comprehensive surface preparation, ensuring a smooth, even application.</li>
+                <li>Transparent Pricing: We provide upfront pricing with no hidden costs.</li>
+            </ul>
+        </section>
+
+        <!-- Form Section -->
+        <section class="quote-form-container">
+            <h2>Get a Price Estimate </h2>
+
+            <form id="paintingServicesForm">
+                <!-- Contact Information -->
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+                <label for="address">Address (including unit number if applicable):</label>
+                <input type="text" id="address" name="address" required>
+
+                <!-- Type of Painting Service -->
+                <label for="serviceType">What type of painting service do you need?</label>
+                <select id="serviceType" name="serviceType" required>
+                    <option value="indoor">Indoor Painting</option>
+                    <option value="outdoor">Outdoor Painting</option>
+                    <option value="both">Both Indoor and Outdoor</option>
+                </select>
+
+                <!-- Area in Square Feet -->
+                <label for="areaSize">Approximate area to be painted (in square feet):</label>
+                <input type="number" id="areaSize" name="areaSize" min="100" required>
+
+                <!-- Type of Paint -->
+                <label for="paintType">What type of paint do you prefer?</label>
+                <select id="paintType" name="paintType" required>
+                    <option value="latex">Latex (Water-based)</option>
+                    <option value="oil">Oil-based Paint</option>
+                    <option value="eco">Eco-friendly Paint</option>
+                </select>
+
+                <!-- Special Requirements -->
+                <label for="specialRequirements">Any special requirements or custom requests?</label>
+                <input type="text" id="specialRequirements" name="specialRequirements" placeholder="Please specify if needed">
+
+                <!-- Preferred Time for Service -->
+                <label for="preferredTime">Preferred Time for Service:</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Request</button>
+            </form>
+
+            <div id="priceOutput" class="price-output"></div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('paintingServicesForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for calculation
+
+            // Get values from the form
+            const serviceType = document.getElementById('serviceType').value;
+            const areaSize = document.getElementById('areaSize').value;
+            const paintType = document.getElementById('paintType').value;
+            const specialRequirements = document.getElementById('specialRequirements').value;
+            const preferredTime = document.getElementById('preferredTime').value; // Get the time
+
+            // Base rate calculation
+            const baseRate = serviceType === 'outdoor' ? 2.5 : 2; // Cost per square foot (outdoor painting tends to be more expensive)
+            let areaCost = areaSize * baseRate;
+            let paintCost = paintType === 'eco' ? 0.50 * areaSize : 0; // Extra charge for eco-friendly paints
+            let customCost = specialRequirements ? 50 : 0; // Extra charge for custom needs
+
+            // Calculate total cost
+            const totalCost = areaCost + paintCost + customCost;
+
+            // Display the calculated price and preferred time
+            document.getElementById('priceOutput').innerHTML = `
+                <h3>Estimated Price for Painting Services</h3>
+                <p>The estimated cost for your painting service is <strong>$${totalCost.toFixed(2)}</strong>.</p>
+                <p>Your preferred time for service is: <strong>${preferredTime}</strong>.</p>
+            `;
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Services:Leak Repair</title>
+    <link rel="stylesheet" href="../../styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+            <div class="logo">
+                <a href="../../index.html" class="home-link">Handyman</a>
+            </div>
+        <nav class="nav-links">
+            <a href="../../service.html">Services</a>
+            <a href="#">Visitor</a>
+            <a href="#">Become a Pro</a>
+            <a href="#">FAQ</a>
+        </nav>
+    </header>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Handyman Services</title>
+        <link rel="stylesheet" href="../../styles.css">
+    </head>
+    <body>
+
+     <!-- Banner Image -->
+     <section class="banner">
+        <img src="../../images/pipe_installation_banner.jpg" alt="Pipe Installation Banner" class="banner-image">
+    </section>
+
+
+  <!-- Main Flex Container (Text on the left, Form on the right) -->
+  <div class="content-flex-container">
+    <!-- Pipe Installation Content (flows naturally as part of the page) -->
+    <section class="leak-repair-content">
+        <h1>Leak Repair Services</h1>
+        <p>
+            Leaks in your plumbing system can quickly escalate into serious problems, from water damage to skyrocketing utility bills. Our expert team specializes in prompt, efficient leak detection and repair, preventing costly damage and ensuring your plumbing system is back in working order as soon as possible.
+        </p>
+        <p>
+            Whether you're dealing with a slow leak, burst pipe, or mysterious water damage, we have the tools and expertise to handle leaks of any size and complexity. With our advanced leak detection equipment, we can quickly identify the source of the problem and fix it on the spot.
+        </p>
+    
+        <h2>Why Choose Us for Leak Repairs?</h2>
+        <ul>
+            <li>Rapid Response: Leaks can cause significant damage if left unattended. Our team is available 24/7 to respond to emergency repairs, minimizing downtime and damage.</li>
+            <li>State-of-the-Art Technology: We use cutting-edge leak detection tools, ensuring that even hidden leaks are located and repaired without unnecessary wall or floor damage.</li>
+            <li>Licensed and Insured: Our certified technicians are licensed, bonded, and insured, ensuring you receive reliable and professional service every time.</li>
+            <li>Cost Transparency: We provide upfront pricing with no hidden fees, so you always know the cost of your repair before we begin the work.</li>
+            <li>Preventive Advice: After we repair your leak, we offer expert advice on how to prevent future issues and keep your plumbing system running efficiently.</li>
+        </ul>
+    </section>
+    
+    
+
+    <!-- Form Section (distinct container) -->
+    <!-- Leak Repair Form -->
+    <section class="quote-form-container">
+        <h2>Get a Price Estimate</h2>
+
+        <form id="leakRepairForm">
+            <!-- Contact Information -->
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required>
+
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+            <label for="address">Address (including unit number if applicable):</label>
+            <input type="text" id="address" name="address" required>
+
+            <!-- Indoor or Outdoor Selection -->
+            <label for="locationType">Is the leak indoor or outdoor?</label>
+            <select id="locationType" name="locationType" required>
+                <option value="indoor">Indoor</option>
+                <option value="outdoor">Outdoor</option>
+            </select>
+
+            <!-- Severity of the Leak -->
+            <label for="leakSeverity">Severity of the Leak:</label>
+            <select id="leakSeverity" name="leakSeverity" required>
+                <option value="minor">Minor drip</option>
+                <option value="moderate">Moderate leak (causing some pooling)</option>
+                <option value="severe">Severe leak (flooding or major water damage)</option>
+            </select>
+
+            <!-- Access Details (Visible for outdoor leaks) -->
+            <div id="accessDetailsContainer" style="display: none;">
+                <label for="accessDetails">Are there any special access issues (e.g., ladder required)?:</label>
+                <input type="text" id="accessDetails" name="accessDetails" placeholder="Please specify">
+            </div>
+
+            <!-- Preferred Time for Repair with Time Picker -->
+            <label for="preferredTime">Preferred Time for Repair:</label>
+            <input type="time" id="preferredTime" name="preferredTime" required>
+
+            <!-- Submit Button -->
+            <button type="submit">Submit Request</button>
+        </form>
+
+        <div id="priceOutput" class="price-output"></div>
+    </section>
+
+    <script>
+        // Toggle visibility of access details based on location selection
+        document.getElementById('locationType').addEventListener('change', function() {
+            const locationType = this.value;
+            const accessDetailsContainer = document.getElementById('accessDetailsContainer');
+            
+            // Show access details input only for outdoor locations
+            if (locationType === 'outdoor') {
+                accessDetailsContainer.style.display = 'block';
+            } else {
+                accessDetailsContainer.style.display = 'none';
+            }
+        });
+
+        document.getElementById('leakRepairForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for calculation
+
+            // Get values from the form
+            const severity = document.getElementById('leakSeverity').value;
+            const locationType = document.getElementById('locationType').value;
+            const accessDetails = document.getElementById('accessDetails').value;
+            const preferredTime = document.getElementById('preferredTime').value; // Get the time
+
+            // Base rate calculation
+            const baseRate = 100; // Hourly rate
+            let severityMultiplier = severity === 'moderate' ? 1.5 : severity === 'severe' ? 2.0 : 1;
+
+            // Additional costs for outdoor locations or access issues
+            let ladderCost = locationType === 'outdoor' ? 75 : 0; // Add cost for outdoor jobs requiring a ladder
+            let accessCost = locationType === 'outdoor' && accessDetails.toLowerCase().includes('yes') ? 50 : 0;
+
+            // Calculate total cost
+            const laborCost = baseRate * severityMultiplier;
+            const totalCost = laborCost + ladderCost + accessCost;
+
+            // Display the calculated price and preferred time
+            document.getElementById('priceOutput').innerHTML = `
+                <h3>Estimated Price for Leak Repair</h3>
+                <p>The estimated cost for your leak repair is <strong>$${totalCost.toFixed(2)}</strong>.</p>
+                <p>Your preferred time for repair is: <strong>${preferredTime}</strong>.</p>
+            `;
+        });
+    </script>
+
+</body>
+</html>

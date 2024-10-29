@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Services:Pipe Installation</title>
+    <link rel="stylesheet" href="../../styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+            <div class="logo">
+                <a href="../../index.html" class="home-link">Handyman</a>
+            </div>
+        <nav class="nav-links">
+            <a href="../../service.html">Services</a>
+            <a href="#">Visitor</a>
+            <a href="#">Become a Pro</a>
+            <a href="#">FAQ</a>
+        </nav>
+    </header>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Handyman Services</title>
+        <link rel="stylesheet" href="../../styles.css">
+    </head>
+    <body>
+    
+
+     <!-- Banner Image -->
+     <section class="banner">
+        <img src="../../images/pipe_installation_banner.jpg" alt="Pipe Installation Banner" class="banner-image">
+    </section>
+  <!-- Main Flex Container (Text on the left, Form on the right) -->
+  <div class="content-flex-container">
+    <!-- Pipe Installation Content (flows naturally as part of the page) -->
+    <section class="pipe-installation-content">
+        <h1>Pipe Installation Services</h1>
+        <p>
+            When it comes to ensuring a reliable plumbing system, it’s essential to trust professionals who understand the complexities of pipe installations. Whether you’re upgrading your home’s system or tackling a new construction project, our expert team is equipped with the knowledge and tools to get the job done right.
+        </p>
+        <p>
+            We offer comprehensive pipe installation services, from initial assessments and planning to the final connection of pipes and fixtures. Our team uses only the highest quality materials to ensure long-lasting performance, while also adhering to all local codes and safety standards.
+        </p>
+    
+        <h2>Why Choose Us?</h2>
+        <ul>
+            <li>Experienced Professionals: Our plumbers bring years of experience, ensuring precision in every installation.</li>
+            <li>Upfront Pricing: No hidden fees—what you see is what you pay. We provide clear and transparent quotes so you can plan accordingly.</li>
+            <li>Timely Service: We respect your time and guarantee efficient installation services that meet your scheduling needs.</li>
+            <li>Comprehensive Warranty: We stand behind our work with robust warranties, giving you peace of mind knowing your system is built to last.</li>
+            <li>24/7 Availability: Plumbing emergencies can happen anytime. We offer flexible scheduling to fit your needs, including after-hours support for urgent issues.</li>
+        </ul>
+    </section>
+    
+
+    <!-- Form Section (distinct container) -->
+    <section class="quote-form-container">
+        <h2>Get a Price Estimate</h2>
+
+        <form id="priceForm">
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" placeholder="Enter your address" required>
+
+            <label for="jobDescription">Tell us about the job:</label>
+            <textarea id="jobDescription" name="jobDescription" rows="4" placeholder="Please describe the job in detail." required></textarea>
+
+            <label for="hours">How many hours would you like to book?:</label>
+            <input type="number" id="hours" name="hours" min="1" required>
+
+            <label for="date">When would you like a Pro to come?:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="phone">Phone Number (Optional):</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+
+            <button type="button" onclick="calculatePrice()">Get a Price</button>
+        </form>
+
+        <div id="priceOutput" class="price-output"></div>
+    </section>
+  </div>
+
+    <script>
+        // Load header.html into the #header-placeholder div
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header:', error));
+
+        // Function to calculate the price based on hours, location, and a fixed rate
+        function calculatePrice() {
+            const hours = document.getElementById('hours').value;
+            const address = document.getElementById('address').value;
+            
+            // Example price calculation
+            const baseRate = 50; // Base rate per hour
+            const distanceCharge = address.includes("city") ? 10 : 20; // Example: add extra charge if the address is outside a specific location
+            const taxRate = 0.1; // 10% tax
+
+            // Calculate the total cost
+            const subtotal = baseRate * hours + distanceCharge;
+            const total = subtotal + (subtotal * taxRate);
+
+            // Output the price
+            document.getElementById('priceOutput').innerHTML = `
+                <h3>Price Estimate</h3>
+                <p>Based on the information you provided, your estimated price is: $${total.toFixed(2)}.</p>
+                <p>This estimate includes ${hours} hours of service at $${baseRate}/hour plus applicable taxes and charges based on your location.</p>
+            `;
+        }
+    </script>
+
+</body>
+</html>

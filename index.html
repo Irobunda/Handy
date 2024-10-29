@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Handyman Services</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="logo">
+            <a href="index.html" class="home-link">Handyman</a>
+        </div>
+        <nav class="nav-links">
+            <a href="service.html">Services</a>
+            <a href="#">Visitor</a>
+            <a href="#">Become a Pro</a>
+            <a href="faq.html">FAQ</a>
+        </nav>
+    </header>
+
+    <!-- Landing Section with Full-Screen Image and Text Overlay -->
+    <div class="container">
+        <!-- Placeholder for image display -->
+        <div class="image-container">
+            <img id="service-image" src="" alt="Service Image">
+        </div>
+
+        <!-- Text Overlay on the Image -->
+        <div class="text-block">
+            <div class="hover" onmouseover="showImage('img_handyman.jpg', this)" >
+                <h3>General Handyman</h3> <!-- Only one h3 tag here -->
+                <p class="Handy" onclick="window.location.href='service.html#general-handyman-services';">
+                    Your go-to for any odd jobs or home improvements!
+                </p>
+            </div>
+            
+            <div class="hover" onmouseover="showImage('img_electric.jpg', this)">
+                <h3>Electrical Work</h3>
+                <p class="Electrical" onclick="window.location.href='service.html#plumbing-services';">
+                    Reliable electrical services at your fingertips!
+                </p>
+            </div>
+            
+            <div class="hover" onmouseover="showImage('img_cleaning.jpg', this)">
+                <h3>Cleaning</h3>
+                <p class="Cleaning" onclick="window.location.href='service.html#cleaning-services';">
+                    Sparkling clean, every time. We’ve got you covered!
+                </p>
+            </div>
+            
+            <div class="hover" onmouseover="showImage('img_repair.jpg', this)">
+                <h3>Repairs</h3>
+                <p class="Repair" onclick="window.location.href='service.html#repairs-services';">
+                    From quick fixes to major repairs, we do it all!
+                </p>
+            </div>
+            
+            <div class="hover" onmouseover="showImage('img_carpentry.jpg', this)">
+                <h3>Carpentry</h3>
+                <p class="carpentry" onclick="window.location.href='service.html#carpentry-services';">
+                    Skilled craftsmanship for any carpentry project.
+                </p>
+            </div>
+
+            <div class="hover" onmouseover="showImage('img_plumber.jpg', this)" >
+                <h3>Plumbing</h3> <!-- Only one h3 tag here -->
+                <p class="plumbing" onclick="window.location.href='service.html#plumbing-services';">
+                    Expert solutions for all your plumbing needs!
+                </p>
+            </div>
+        </div>
+      
+
+        <!-- Footer-like text at the bottom right inside the container -->
+        <div class="footer-text">
+            @KoalaTech Enterprise
+        </div>
+        
+        <!-- Summary text on the bottom-left side -->
+        <div class="summary-text">
+           <h3>One Stop, All Solutions</h3>
+           <p>The ultimate platform for all your handyman and home service needs!</p>
+        </div>
+    </div>
+
+    <!-- Add JavaScript to load the hover content and handle image change -->
+    <script>
+        let activeService = null; // Variable to keep track of the active service
+    
+        // Show image on hover and apply the active class
+        function showImage(imagePath, element) {
+            var imageElement = document.getElementById('service-image');
+            imageElement.src = 'images/' + imagePath; // Set image source
+            imageElement.style.display = 'block'; // Show the image
+    
+            // Remove the active class from the previously active service
+            if (activeService) {
+                activeService.classList.remove('active');
+            }
+    
+            // Add the active class to the currently hovered service
+            element.classList.add('active');
+    
+            // Set this service as the active one
+            activeService = element;
+        }
+            
+            // Call the function to show the General Handyman image when the page loads
+        window.onload = function() {
+                    // Find the General Handyman service element
+        const generalHandymanService = document.querySelector('.hover:first-child'); // Assuming it's the last service block
+        // Call the showImage function for General Handyman by default
+        showImage('img_handyman.jpg', generalHandymanService);
+        };
+        
+    </script>
+    
+
+
+</body>
+</html>

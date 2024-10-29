@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cabinet Installation Services</title>
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+            <div class="logo">
+                <a href="../../index.html" class="home-link">Handyman</a>
+            </div>
+        <nav class="nav-links">
+            <a href="../../service.html">Services</a>
+            <a href="#">Visitor</a>
+            <a href="#">Become a Pro</a>
+            <a href="#">FAQ</a>
+        </nav>
+    </header>
+
+    <!-- Banner Image -->
+    <section class="banner">
+        <img src="../../images/carpentry.jpg" alt="Cabinet Installation Banner" class="banner-image">
+    </section>
+
+    <!-- Main Content for Cabinet Installation Services -->
+    <div class="content-flex-container">
+        <!-- Cabinet Installation Content -->
+        <section class="cabinet-installation-content">
+            <h1>Cabinet Installation Services</h1>
+            <p>
+                Transform your kitchen, bathroom, or any space in your home with professionally installed cabinets. Our cabinet installation services offer both standard and custom installations, ensuring a perfect fit for your storage and design needs.
+            </p>
+            <p>
+                From traditional kitchen cabinets to custom-built shelving units, we handle installations for both new builds and renovations. Our team ensures that every cabinet is securely mounted, level, and aligned for a clean and professional look.
+            </p>
+
+            <h2>Why Choose Us?</h2>
+            <ul>
+                <li>Professional Installation: Our skilled installers ensure that cabinets are mounted securely and correctly.</li>
+                <li>Custom and Standard Options: We install both pre-fabricated and custom cabinets to match your space perfectly.</li>
+                <li>Wall Mounting: For higher cabinets, we ensure safe and sturdy wall mounting.</li>
+                <li>Flexible Installation: We work around your schedule to provide convenient and fast service.</li>
+                <li>Transparent Pricing: Upfront pricing with no hidden fees or additional costs.</li>
+            </ul>
+        </section>
+
+        <!-- Form Section -->
+        <section class="quote-form-container">
+            <h2>Get a Price Estimate</h2>
+
+            <form id="cabinetInstallationForm">
+                <!-- Contact Information -->
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+                <label for="address">Address (including unit number if applicable):</label>
+                <input type="text" id="address" name="address" required>
+
+                <!-- Type of Installation -->
+                <label for="installationType">What type of cabinets are you installing?</label>
+                <select id="installationType" name="installationType" required>
+                    <option value="kitchen">Kitchen Cabinets</option>
+                    <option value="bathroom">Bathroom Cabinets</option>
+                    <option value="custom">Custom Shelving/Cabinets</option>
+                </select>
+
+                <!-- Number of Cabinets -->
+                <label for="cabinetCount">How many cabinets do you need to install?</label>
+                <input type="number" id="cabinetCount" name="cabinetCount" min="1" required>
+
+                <!-- Mounting Requirements -->
+                <label for="mountingRequirements">Do any cabinets need to be mounted on the wall?</label>
+                <select id="mountingRequirements" name="mountingRequirements" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+
+                <!-- Special Requirements -->
+                <label for="specialRequirements">Any custom measurements or special installation needs? (Optional):</label>
+                <input type="text" id="specialRequirements" name="specialRequirements" placeholder="Please specify if needed">
+
+                <!-- Preferred Time for Service -->
+                <label for="preferredTime">Preferred Time for Service:</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Request</button>
+            </form>
+
+            <div id="priceOutput" class="price-output"></div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('cabinetInstallationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for calculation
+
+            // Get values from the form
+            const installationType = document.getElementById('installationType').value;
+            const cabinetCount = document.getElementById('cabinetCount').value;
+            const mountingRequirements = document.getElementById('mountingRequirements').value;
+            const specialRequirements = document.getElementById('specialRequirements').value;
+            const preferredTime = document.getElementById('preferredTime').value; // Get the time
+
+            // Base rate calculation
+            const baseRate = installationType === 'custom' ? 400 : 250;
+            let cabinetCost = cabinetCount * 75; // Charge $75 per cabinet
+            let mountingCost = mountingRequirements === 'yes' ? 50 : 0; // Extra charge for wall mounting
+            let customCost = specialRequirements ? 100 : 0; // Extra charge for custom installations
+
+            // Calculate total cost
+            const totalCost = baseRate + cabinetCost + mountingCost + customCost;
+
+            // Display the calculated price and preferred time
+            document.getElementById('priceOutput').innerHTML = `
+                <h3>Estimated Price for Cabinet Installation</h3>
+                <p>The estimated cost for your cabinet installation is <strong>$${totalCost.toFixed(2)}</strong>.</p>
+                <p>Your preferred time for service is: <strong>${preferredTime}</strong>.</p>
+            `;
+        });
+    </script>
+
+</body>
+</html>

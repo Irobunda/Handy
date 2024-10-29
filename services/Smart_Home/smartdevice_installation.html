@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Smart Device Installation Services</title>
+    <link rel="stylesheet" href="../../styles.css"> <!-- Adjust path if necessary -->
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="logo">
+            <a href="../index.html" class="home-link">Handyman</a>
+        </div>
+        <nav class="nav-links">
+            <a href="service.html">Services</a>
+            <a href="#">Visitor</a>
+            <a href="#">Become a Pro</a>
+            <a href="#">FAQ</a>
+        </nav>
+    </header>
+
+    <!-- Banner Image -->
+    <section class="banner">
+        <img src="../../images/smart_home.jpg" alt="Automated and Sensor Installation Banner" class="banner-image">
+    </section>
+
+    <!-- Main Content for Smart Device Installation Services -->
+    <div class="content-flex-container">
+        <!-- Smart Device Installation Content -->
+        <section class="smartdevice-installation-content">
+            <h1>Smart Device Installation Services</h1>
+            <p>
+                Enhance your home or office with the latest in smart device technology. Whether you're installing a smart thermostat, smart lighting, or voice-controlled systems, we provide expert installation services to ensure seamless integration into your daily life.
+            </p>
+            <p>
+                Our technicians can install, configure, and optimize smart home devices like doorbell cameras, smart speakers, smart TVs, lighting systems, and more, ensuring they work smoothly with your existing network and devices.
+            </p>
+
+            <h2>Why Choose Us for Smart Device Installation?</h2>
+            <ul>
+                <li>Expert Installation: Our technicians are certified to install all major brands of smart devices.</li>
+                <li>Complete Integration: We ensure all your smart devices are seamlessly integrated and functional.</li>
+                <li>Flexible Installation: We install devices in both residential and commercial properties.</li>
+                <li>Training: After installation, we provide basic training so you can use your smart devices to their full potential.</li>
+                <li>Transparent Pricing: We offer upfront pricing with no hidden fees.</li>
+            </ul>
+        </section>
+
+        <!-- Form Section -->
+        <section class="quote-form-container">
+            <h2>Get a Price Estimate for Smart Device Installation</h2>
+
+            <form id="smartDeviceForm">
+                <!-- Contact Information -->
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+                <label for="address">Address (including unit number if applicable):</label>
+                <input type="text" id="address" name="address" required>
+
+                <!-- Type of Installation -->
+                <label for="installationType">What type of smart devices would you like to install?</label>
+                <select id="installationType" name="installationType" required>
+                    <option value="smartThermostat">Smart Thermostat</option>
+                    <option value="smartLighting">Smart Lighting</option>
+                    <option value="smartSpeakers">Smart Speakers</option>
+                    <option value="smartSecurity">Smart Security System</option>
+                    <option value="smartLocks">Smart Locks</option>
+                    <option value="other">Other (specify below)</option>
+                </select>
+                <input type="text" id="otherInstallation" name="otherInstallation" placeholder="If other, please specify">
+
+                <!-- Number of Devices -->
+                <label for="deviceCount">How many smart devices would you like to install?</label>
+                <input type="number" id="deviceCount" name="deviceCount" min="1" required>
+
+                <!-- Access to Installation Site -->
+                <label for="accessDetails">Is the installation site easy to access? (Yes/No, and details if relevant):</label>
+                <input type="text" id="accessDetails" name="accessDetails" placeholder="Yes/No. Please specify any difficulties.">
+
+                <!-- Preferred Time for Service -->
+                <label for="preferredTime">Preferred Time for Service:</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Request</button>
+            </form>
+
+            <div id="priceOutput" class="price-output"></div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('smartDeviceForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for calculation
+
+            // Get values from the form
+            const installationType = document.getElementById('installationType').value;
+            const deviceCount = document.getElementById('deviceCount').value;
+            const accessDetails = document.getElementById('accessDetails').value;
+            const preferredTime = document.getElementById('preferredTime').value; // Get the time
+
+            // Base rate calculation
+            const baseRate = installationType === 'smartSecurity' ? 400 : 200;
+            let deviceCost = deviceCount * 75; // Charge $75 per device installation
+            let accessCost = accessDetails.toLowerCase().includes('no') ? 50 : 0; // Extra charge for hard-to-access sites
+
+            // Calculate total cost
+            const totalCost = baseRate + deviceCost + accessCost;
+
+            // Display the calculated price and preferred time
+            document.getElementById('priceOutput').innerHTML = `
+                <h3>Estimated Price for Smart Device Installation</h3>
+                <p>The estimated cost for your smart device installation is <strong>$${totalCost.toFixed(2)}</strong>.</p>
+                <p>Your preferred time for service is: <strong>${preferredTime}</strong>.</p>
+            `;
+        });
+    </script>
+
+</body>
+</html>

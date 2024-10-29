@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Roof Repair and Carpentry Services</title>
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+            <div class="logo">
+                <a href="../../index.html" class="home-link">Handyman</a>
+            </div>
+        <nav class="nav-links">
+            <a href="../../service.html">Services</a>
+            <a href="#">Visitor</a>
+            <a href="#">Become a Pro</a>
+            <a href="#">FAQ</a>
+        </nav>
+    </header>
+
+    <!-- Banner Image -->
+    <section class="banner">
+        <img src="../../images/carpentry.jpg" alt="Cabinet Installation Banner" class="banner-image">
+    </section>
+
+    <!-- Main Content for Roof Repair and Carpentry Services -->
+    <div class="content-flex-container">
+        <!-- Roof Repair and Carpentry Content -->
+        <section class="roof-repair-carpentry-content">
+            <h1>Roof Repair and Carpentry Services</h1>
+            <p>
+                Keep your home safe from weather damage with professional roof repair services. Whether you’re dealing with leaks, broken shingles, or structural issues, our expert team is ready to assess and fix any roofing problems. We also specialize in a range of carpentry services, from framing to custom woodworking and structural repairs.
+            </p>
+            <p>
+                Our carpenters and roof repair specialists are trained to handle a variety of materials, ensuring that your roof and carpentry projects are not only functional but also visually appealing. We provide long-lasting solutions to both minor repairs and complete rebuilds.
+            </p>
+
+            <h2>Why Choose Us ?</h2>
+            <ul>
+                <li>Professional Expertise: Our team is experienced in a wide variety of roofing materials and carpentry techniques.</li>
+                <li>Fast Response: We handle urgent repairs efficiently to protect your home from further damage.</li>
+                <li>Custom Solutions: We offer tailored carpentry solutions to fit your specific needs and design preferences.</li>
+                <li>Durability: We use high-quality materials that ensure your roof and woodwork last for years to come.</li>
+                <li>Transparent Pricing: Upfront pricing with no hidden costs.</li>
+            </ul>
+        </section>
+
+        <!-- Form Section -->
+        <section class="quote-form-container">
+            <h2>Get a Price Estimate </h2>
+
+            <form id="roofRepairForm">
+                <!-- Contact Information -->
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+                <label for="address">Address (including unit number if applicable):</label>
+                <input type="text" id="address" name="address" required>
+
+                <!-- Type of Service -->
+                <label for="serviceType">What type of service do you need?</label>
+                <select id="serviceType" name="serviceType" required>
+                    <option value="roofRepair">Roof Repair</option>
+                    <option value="roofReplacement">Roof Replacement</option>
+                    <option value="carpentry">Carpentry Services</option>
+                    <option value="customCarpentry">Custom Carpentry (specify below)</option>
+                </select>
+                <input type="text" id="customService" name="customService" placeholder="If custom, please specify">
+
+                <!-- Material Preferences -->
+                <label for="materialPreference">What materials would you prefer?</label>
+                <select id="materialPreference" name="materialPreference" required>
+                    <option value="shingles">Shingles (Asphalt or Wood)</option>
+                    <option value="metalRoof">Metal Roof</option>
+                    <option value="compositeRoof">Composite Roof</option>
+                    <option value="woodCarpentry">Wood for Carpentry</option>
+                    <option value="customMaterial">Other (specify below)</option>
+                </select>
+                <input type="text" id="customMaterial" name="customMaterial" placeholder="If other, please specify">
+
+                <!-- Roof/Cabinet Type or Custom Carpentry -->
+                <label for="serviceDetails">Any special installation needs or custom measurements?</label>
+                <input type="text" id="serviceDetails" name="serviceDetails" placeholder="Please specify if needed">
+
+                <!-- Preferred Time for Service -->
+                <label for="preferredTime">Preferred Time for Service:</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Request</button>
+            </form>
+
+            <div id="priceOutput" class="price-output"></div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('roofRepairForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for calculation
+
+            // Get values from the form
+            const serviceType = document.getElementById('serviceType').value;
+            const materialPreference = document.getElementById('materialPreference').value;
+            const serviceDetails = document.getElementById('serviceDetails').value;
+            const preferredTime = document.getElementById('preferredTime').value; // Get the time
+
+            // Base rate calculation
+            const baseRate = serviceType === 'roofReplacement' ? 700 : serviceType === 'roofRepair' ? 400 : serviceType === 'carpentry' ? 300 : 600;
+            let materialCost = materialPreference === 'shingles' ? 200 : materialPreference === 'metalRoof' ? 400 : 300;
+            let customCost = serviceDetails ? 150 : 0; // Extra charge for custom needs
+
+            // Calculate total cost
+            const totalCost = baseRate + materialCost + customCost;
+
+            // Display the calculated price and preferred time
+            document.getElementById('priceOutput').innerHTML = `
+                <h3>Estimated Price for Roof Repair and Carpentry Services</h3>
+                <p>The estimated cost for your service is <strong>$${totalCost.toFixed(2)}</strong>.</p>
+                <p>Your preferred time for service is: <strong>${preferredTime}</strong>.</p>
+            `;
+        });
+    </script>
+
+</body>
+</html>

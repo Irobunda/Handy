@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Custom Furniture Services</title>
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+            <div class="logo">
+                <a href="../../index.html" class="home-link">Handyman</a>
+            </div>
+        <nav class="nav-links">
+            <a href="../../service.html">Services</a>
+            <a href="#">Visitor</a>
+            <a href="#">Become a Pro</a>
+            <a href="#">FAQ</a>
+        </nav>
+    </header>
+
+    <!-- Banner Image -->
+    <section class="banner">
+        <img src="../../images/carpentry.jpg" alt="Cabinet Installation Banner" class="banner-image">
+    </section>
+
+    <!-- Main Content for Custom Furniture Services -->
+    <div class="content-flex-container">
+        <!-- Custom Furniture Content -->
+        <section class="custom-furniture-content">
+            <h1>Custom Furniture Services</h1>
+            <p>
+                Bring your vision to life with our custom furniture services. Whether you're looking to design a unique piece for your home or need tailored furniture for a commercial space, our skilled craftsmen are here to help. We specialize in creating bespoke furniture pieces that match your exact style, dimensions, and material preferences.
+            </p>
+            <p>
+                From custom dining tables to one-of-a-kind shelving units, our team ensures that each piece is made with attention to detail and high-quality craftsmanship. We work with a wide variety of materials, from wood and metal to glass and upholstery, to bring your dream furniture to life.
+            </p>
+
+            <h2>Why Choose Us?</h2>
+            <ul>
+                <li>Tailored Designs: Each piece is designed to fit your specific needs and preferences.</li>
+                <li>High-Quality Materials: We source the best materials to ensure durability and a premium finish.</li>
+                <li>Expert Craftsmanship: Our skilled artisans take pride in creating beautiful, functional furniture.</li>
+                <li>Custom Dimensions: We build furniture that fits your space perfectly, down to the last detail.</li>
+                <li>Transparent Pricing: Upfront pricing with no hidden fees or surprises.</li>
+            </ul>
+        </section>
+
+        <!-- Form Section -->
+        <section class="quote-form-container">
+            <h2>Get a Price Estimate</h2>
+
+            <form id="customFurnitureForm">
+                <!-- Contact Information -->
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+                <label for="address">Address (including unit number if applicable):</label>
+                <input type="text" id="address" name="address" required>
+
+                <!-- Type of Furniture -->
+                <label for="furnitureType">What type of custom furniture do you need?</label>
+                <select id="furnitureType" name="furnitureType" required>
+                    <option value="diningTable">Dining Table</option>
+                    <option value="bed">Bed Frame</option>
+                    <option value="shelves">Shelving Unit</option>
+                    <option value="sofa">Sofa</option>
+                    <option value="customPiece">Custom Piece (specify below)</option>
+                </select>
+                <input type="text" id="customPiece" name="customPiece" placeholder="If custom, please specify">
+
+                <!-- Material Preferences -->
+                <label for="materialPreference">What materials would you prefer?</label>
+                <select id="materialPreference" name="materialPreference" required>
+                    <option value="wood">Wood</option>
+                    <option value="metal">Metal</option>
+                    <option value="glass">Glass</option>
+                    <option value="upholstery">Upholstered</option>
+                    <option value="mix">Combination of Materials</option>
+                </select>
+
+                <!-- Special Measurements -->
+                <label for="dimensions">Custom Measurements (optional):</label>
+                <input type="text" id="dimensions" name="dimensions" placeholder="Provide dimensions if necessary">
+
+                <!-- Preferred Time for Service -->
+                <label for="preferredTime">Preferred Time for Consultation:</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Request</button>
+            </form>
+
+            <div id="priceOutput" class="price-output"></div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('customFurnitureForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for calculation
+
+            // Get values from the form
+            const furnitureType = document.getElementById('furnitureType').value;
+            const materialPreference = document.getElementById('materialPreference').value;
+            const dimensions = document.getElementById('dimensions').value;
+            const preferredTime = document.getElementById('preferredTime').value; // Get the time
+
+            // Base rate calculation
+            const baseRate = furnitureType === 'customPiece' ? 800 : 500;
+            let materialCost = materialPreference === 'wood' ? 100 : materialPreference === 'metal' ? 150 : 200;
+            let customCost = dimensions ? 200 : 0; // Extra charge for custom measurements
+
+            // Calculate total cost
+            const totalCost = baseRate + materialCost + customCost;
+
+            // Display the calculated price and preferred time
+            document.getElementById('priceOutput').innerHTML = `
+                <h3>Estimated Price for Custom Furniture</h3>
+                <p>The estimated cost for your custom furniture is <strong>$${totalCost.toFixed(2)}</strong>.</p>
+                <p>Your preferred time for consultation is: <strong>${preferredTime}</strong>.</p>
+            `;
+        });
+    </script>
+
+</body>
+</html>

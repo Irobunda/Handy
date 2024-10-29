@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Services:Water Heater Installation</title>
+    <link rel="stylesheet" href="../../styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+            <div class="logo">
+                <a href="../../index.html" class="home-link">Handyman</a>
+            </div>
+        <nav class="nav-links">
+            <a href="../../service.html">Services</a>
+            <a href="#">Visitor</a>
+            <a href="#">Become a Pro</a>
+            <a href="#">FAQ</a>
+        </nav>
+    </header>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Handyman Services</title>
+        <link rel="stylesheet" href="../../styles.css">
+    </head>
+    <body>
+        
+     <!-- Banner Image -->
+     <section class="banner">
+        <img src="../../Images/electrical_service.jpg" alt="Pipe Installation Banner" class="banner-image">
+    </section>
+
+
+  
+    <!-- Main Content for Electrical Repairs and Troubleshooting -->
+    <div class="content-flex-container">
+        <!-- Electrical Repairs Content -->
+        <section class="electrical-repairs-content">
+            <h1>Electrical Repairs and Troubleshooting</h1>
+            <p>
+                Electrical problems in your home or business can pose serious risks, from safety hazards to system malfunctions. Our certified electricians provide professional troubleshooting and repair services, ensuring your electrical system is functioning safely and efficiently.
+            </p>
+            <p>
+                From flickering lights and faulty outlets to more complex wiring and circuit issues, we have the skills and tools to identify the problem and resolve it quickly. We also ensure that all repairs meet the highest safety standards, keeping you and your property protected.
+            </p>
+
+            <h2>Why Choose Us?</h2>
+            <ul>
+                <li>Experienced Electricians: Our licensed professionals have the expertise to troubleshoot and repair a wide range of electrical issues.</li>
+                <li>Comprehensive Diagnosis: We conduct thorough diagnostics to identify the root cause of electrical problems.</li>
+                <li>Fast and Reliable: Our services are designed to get your electrical systems up and running as quickly as possible.</li>
+                <li>Safety First: We adhere to all safety standards and codes to ensure the safety of your property and family.</li>
+                <li>Transparent Pricing: Upfront, clear pricing so you know what to expect before we start the job.</li>
+            </ul>
+        </section>
+
+        <!-- Form Section -->
+        <section class="quote-form-container">
+            <h2>Get a Price Estimate</h2>
+
+            <form id="electricalRepairsForm">
+                <!-- Contact Information -->
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+                <label for="address">Address (including unit number if applicable):</label>
+                <input type="text" id="address" name="address" required>
+
+                <!-- Type of Electrical Problem -->
+                <label for="problemType">What type of electrical problem are you experiencing?</label>
+                <select id="problemType" name="problemType" required>
+                    <option value="flickeringLights">Flickering Lights</option>
+                    <option value="faultyOutlets">Faulty Outlets</option>
+                    <option value="circuitBreaker">Tripped Circuit Breaker</option>
+                    <option value="wiringIssues">Wiring Issues</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <!-- Severity of Issue -->
+                <label for="severityLevel">How severe is the issue?</label>
+                <select id="severityLevel" name="severityLevel" required>
+                    <option value="minor">Minor</option>
+                    <option value="moderate">Moderate</option>
+                    <option value="severe">Severe (e.g., sparks or smoke)</option>
+                </select>
+
+                <!-- Access to Electrical Panels -->
+                <label for="accessDetails">Is the electrical panel easy to access? (Yes/No, and details if relevant):</label>
+                <input type="text" id="accessDetails" name="accessDetails" placeholder="Yes/No. Please specify any difficulties.">
+
+                <!-- Preferred Time for Service -->
+                <label for="preferredTime">Preferred Time for Service:</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Request</button>
+            </form>
+
+            <div id="priceOutput" class="price-output"></div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('electricalRepairsForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for calculation
+
+            // Get values from the form
+            const problemType = document.getElementById('problemType').value;
+            const severityLevel = document.getElementById('severityLevel').value;
+            const accessDetails = document.getElementById('accessDetails').value;
+            const preferredTime = document.getElementById('preferredTime').value; // Get the time
+
+            // Base rate calculation
+            const baseRate = problemType === 'wiringIssues' || severityLevel === 'severe' ? 250 : 150;
+            let severityMultiplier = severityLevel === 'moderate' ? 1.5 : severityLevel === 'severe' ? 2.0 : 1;
+            let accessCost = accessDetails.toLowerCase().includes('no') ? 50 : 0; // Extra charge for hard-to-access sites
+
+            // Calculate total cost
+            const laborCost = baseRate * severityMultiplier;
+            const totalCost = laborCost + accessCost;
+
+            // Display the calculated price and preferred time
+            document.getElementById('priceOutput').innerHTML = `
+                <h3>Estimated Price for Electrical Repairs</h3>
+                <p>The estimated cost for your electrical repairs is <strong>$${totalCost.toFixed(2)}</strong>.</p>
+                <p>Your preferred time for service is: <strong>${preferredTime}</strong>.</p>
+            `;
+        });
+    </script>
+
+</body>
+</html>

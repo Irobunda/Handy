@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Services:Water Heater Installation</title>
+    <link rel="stylesheet" href="../../styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+            <div class="logo">
+                <a href="../../index.html" class="home-link">Handyman</a>
+            </div>
+        <nav class="nav-links">
+            <a href="../../service.html">Services</a>
+            <a href="#">Visitor</a>
+            <a href="#">Become a Pro</a>
+            <a href="#">FAQ</a>
+        </nav>
+    </header>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Handyman Services</title>
+        <link rel="stylesheet" href="../../styles.css">
+    </head>
+    <body>
+        
+     <!-- Banner Image -->
+     <section class="banner">
+        <img src="../../images/electrical_service.jpg" alt="Pipe Installation Banner" class="banner-image">
+    </section>
+
+
+    <!-- Main Content for Surge Protection Installation -->
+    <div class="content-flex-container">
+        <!-- Surge Protection Installation Content -->
+        <section class="surge-protection-content">
+            <h1>Surge Protection Installation Services</h1>
+            <p>
+                Protect your home or business from unexpected power surges that can damage your electrical devices and appliances. Our professional surge protection installation services ensure that your electrical system is safeguarded from spikes in voltage, offering peace of mind and long-term security for your valuable electronics.
+            </p>
+            <p>
+                We install whole-house and point-of-use surge protectors to protect your system from internal and external surges, including those caused by lightning, faulty wiring, or utility grid switching. Our certified electricians ensure the highest standards of safety and performance.
+            </p>
+
+            <h2>Why Choose Us?</h2>
+            <ul>
+                <li>Expert Installation: Our certified electricians have extensive experience installing all types of surge protectors.</li>
+                <li>Comprehensive Coverage: We offer whole-house surge protectors and targeted protection for sensitive equipment.</li>
+                <li>Cost-Effective Solutions: Our surge protection systems help prevent costly damage to your electrical devices and appliances.</li>
+                <li>Safety First: We follow all necessary safety protocols to ensure a reliable and safe installation.</li>
+                <li>Clear Pricing: Transparent, upfront pricing with no hidden fees, so you know what to expect.</li>
+            </ul>
+        </section>
+
+        <!-- Form Section -->
+        <section class="quote-form-container">
+            <h2>Get a Price Estimate</h2>
+
+            <form id="surgeProtectionForm">
+                <!-- Contact Information -->
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+                <label for="address">Address (including unit number if applicable):</label>
+                <input type="text" id="address" name="address" required>
+
+                <!-- Type of Surge Protection -->
+                <label for="protectionType">What type of surge protection do you need?</label>
+                <select id="protectionType" name="protectionType" required>
+                    <option value="wholeHouse">Whole-House Surge Protector</option>
+                    <option value="pointOfUse">Point-of-Use Surge Protector</option>
+                </select>
+
+                <!-- Electrical System Type -->
+                <label for="systemType">What type of electrical system do you have?</label>
+                <select id="systemType" name="systemType" required>
+                    <option value="singlePhase">Single-Phase System</option>
+                    <option value="threePhase">Three-Phase System</option>
+                </select>
+
+                <!-- Access to Electrical Panel -->
+                <label for="accessDetails">Is the electrical panel easy to access? (Yes/No, and details if relevant):</label>
+                <input type="text" id="accessDetails" name="accessDetails" placeholder="Yes/No. Please specify any difficulties.">
+
+                <!-- Preferred Time for Installation -->
+                <label for="preferredTime">Preferred Time for Installation:</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Request</button>
+            </form>
+
+            <div id="priceOutput" class="price-output"></div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('surgeProtectionForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for calculation
+
+            // Get values from the form
+            const protectionType = document.getElementById('protectionType').value;
+            const systemType = document.getElementById('systemType').value;
+            const accessDetails = document.getElementById('accessDetails').value;
+            const preferredTime = document.getElementById('preferredTime').value; // Get the time
+
+            // Base rate calculation
+            const baseRate = protectionType === 'wholeHouse' ? 350 : 200; // Higher cost for whole-house protection
+            let systemCost = systemType === 'threePhase' ? 100 : 0; // Extra cost for three-phase systems
+            let accessCost = accessDetails.toLowerCase().includes('no') ? 50 : 0; // Extra charge for hard-to-access sites
+
+            // Calculate total cost
+            const totalCost = baseRate + systemCost + accessCost;
+
+            // Display the calculated price and preferred time
+            document.getElementById('priceOutput').innerHTML = `
+                <h3>Estimated Price for Surge Protection Installation</h3>
+                <p>The estimated cost for your surge protection installation is <strong>$${totalCost.toFixed(2)}</strong>.</p>
+                <p>Your preferred time for installation is: <strong>${preferredTime}</strong>.</p>
+            `;
+        });
+    </script>
+
+</body>
+</html>

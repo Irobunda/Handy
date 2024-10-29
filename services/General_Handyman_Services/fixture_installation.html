@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Fixture Installation Services</title>
+    <link rel="stylesheet" href="../../styles.css"> <!-- Adjust path if necessary -->
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="logo">
+            <a href="../../index.html" class="home-link">Handyman</a>
+        </div>
+        <nav class="nav-links">
+            <a href="service.html">Services</a>
+            <a href="#">Visitor</a>
+            <a href="#">Become a Pro</a>
+            <a href="#">FAQ</a>
+        </nav>
+    </header>
+
+    <!-- Banner Image -->
+    <section class="banner">
+        <img src="../../images/handy_service.jpg" alt="Fixture Installation Banner" class="banner-image">
+    </section>
+
+    <!-- Main Content for Fixture Installation Services -->
+    <div class="content-flex-container">
+        <!-- Fixture Installation Content -->
+        <section class="fixture-installation-content">
+            <h1>Fixture Installation Services</h1>
+            <p>
+                Whether you're installing new lighting fixtures, plumbing fittings, or shelving units, our team of professionals is here to help. We specialize in installing all kinds of fixtures with precision and care to ensure safety, functionality, and aesthetics.
+            </p>
+            <p>
+                Our services cover a wide range of fixtures, including ceiling fans, wall-mounted lights, faucets, and custom shelving. No job is too small or too complex for our experienced team, and we guarantee top-notch workmanship on every project.
+            </p>
+
+            <h2>Why Choose Us ?</h2>
+            <ul>
+                <li>Expert Installation: Our team has extensive experience in installing a wide variety of fixtures.</li>
+                <li>Custom Solutions: We work with your space to create tailored solutions for every room.</li>
+                <li>Safety First: We ensure that all electrical and plumbing work is done to code, keeping your home or office safe.</li>
+                <li>Upfront Pricing: We offer clear, upfront pricing with no hidden fees or surprises.</li>
+                <li>Flexible Scheduling: We work around your schedule to provide fast and efficient installation services.</li>
+            </ul>
+        </section>
+
+        <!-- Form Section -->
+        <section class="quote-form-container">
+            <h2>Get a Price Estimate </h2>
+
+            <form id="fixtureInstallationForm">
+                <!-- Contact Information -->
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+                <label for="address">Address (including unit number if applicable):</label>
+                <input type="text" id="address" name="address" required>
+
+                <!-- Type of Fixture -->
+                <label for="fixtureType">What type of fixture do you need to install?</label>
+                <select id="fixtureType" name="fixtureType" required>
+                    <option value="lighting">Lighting Fixtures</option>
+                    <option value="plumbing">Plumbing Fixtures</option>
+                    <option value="shelving">Shelving Units</option>
+                    <option value="ceilingFan">Ceiling Fan</option>
+                    <option value="custom">Custom Fixture (specify below)</option>
+                </select>
+                <input type="text" id="customFixture" name="customFixture" placeholder="If custom, please specify">
+
+                <!-- Number of Fixtures -->
+                <label for="fixtureCount">How many fixtures do you need to install?</label>
+                <input type="number" id="fixtureCount" name="fixtureCount" min="1" required>
+
+                <!-- Special Requirements -->
+                <label for="specialRequirements">Any special installation needs or custom measurements?</label>
+                <input type="text" id="specialRequirements" name="specialRequirements" placeholder="Please specify if needed">
+
+                <!-- Preferred Time for Service -->
+                <label for="preferredTime">Preferred Time for Service:</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Request</button>
+            </form>
+
+            <div id="priceOutput" class="price-output"></div>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('fixtureInstallationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for calculation
+
+            // Get values from the form
+            const fixtureType = document.getElementById('fixtureType').value;
+            const fixtureCount = document.getElementById('fixtureCount').value;
+            const specialRequirements = document.getElementById('specialRequirements').value;
+            const preferredTime = document.getElementById('preferredTime').value; // Get the time
+
+            // Base rate calculation
+            const baseRate = fixtureType === 'lighting' || fixtureType === 'plumbing' ? 100 : fixtureType === 'shelving' ? 80 : 150;
+            let fixtureCost = fixtureCount * baseRate;
+            let customCost = specialRequirements ? 50 : 0; // Extra charge for custom installations
+
+            // Calculate total cost
+            const totalCost = fixtureCost + customCost;
+
+            // Display the calculated price and preferred time
+            document.getElementById('priceOutput').innerHTML = `
+                <h3>Estimated Price for Fixture Installation</h3>
+                <p>The estimated cost for your fixture installation is <strong>$${totalCost.toFixed(2)}</strong>.</p>
+                <p>Your preferred time for service is: <strong>${preferredTime}</strong>.</p>
+            `;
+        });
+    </script>
+
+</body>
+</html>
