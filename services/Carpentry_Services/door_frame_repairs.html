@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Door Frame Repair, Replacement, and Installation</title>
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+
+    <div id="header-placeholder"></div> <!-- Placeholder for header -->
+    <!-- Load header with JavaScript -->
+    <script>
+        fetch('../../header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
+
+    <!-- Banner Image -->
+    <section class="banner">
+        <img src="../../images/carpentry.jpg" alt="Cabinet Installation Banner" class="banner-image">
+    </section>
+
+    <!-- Main Content for Door Frame Services -->
+    <div class="content-flex-container">
+        <!-- Door Frame Repair and Installation Content -->
+        <section class="door-frame-services-content">
+            <h1>Door Frame Repair, Replacement, and Installation</h1>
+            <p>
+                Whether your door frame is damaged, needs replacement, or you're looking to install a new one, we provide top-notch door frame services. From traditional wooden frames to modern metal and composite materials, we ensure a perfect fit and finish.
+            </p>
+            <p>
+                Our services range from fixing damaged frames to complete installation of new door frames, ensuring they are secure, weatherproof, and level. We handle all door types including interior, exterior, sliding, and French doors.
+            </p>
+
+            <h2>Why Choose Us ?</h2>
+            <ul>
+                <li>Professional Repair: We restore damaged or warped door frames to their original condition.</li>
+                <li>Replacement: We offer custom door frame replacement tailored to your home’s style and dimensions.</li>
+                <li>New Installation: Expert installation of new door frames with precise measurements and weatherproofing.</li>
+                <li>Material Choices: Choose from a variety of materials including wood, metal, or composite frames.</li>
+                <li>Transparent Pricing: We provide upfront pricing with no hidden fees.</li>
+            </ul>
+        </section>
+
+        <!-- Form Section -->
+        <section class="quote-form-container">
+            <h2>Get a Price Estimate </h2>
+
+            <form id="doorFrameForm">
+                <!-- Contact Information -->
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+                
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="address">Address (including unit number if applicable):</label>
+                <input type="text" id="address" name="address" required>
+
+                <!-- Type of Service -->
+                <label for="serviceType">What type of service do you need?</label>
+                <select id="serviceType" name="serviceType" required>
+                    <option value="repair">Door Frame Repair</option>
+                    <option value="replacement">Door Frame Replacement</option>
+                    <option value="installation">New Door Frame Installation</option>
+                </select>
+
+                <!-- Material Preferences -->
+                <label for="materialPreference">What materials would you prefer for the frame?</label>
+                <select id="materialPreference" name="materialPreference" required>
+                    <option value="wood">Wood</option>
+                    <option value="metal">Metal</option>
+                    <option value="composite">Composite</option>
+                    <option value="custom">Other (specify below)</option>
+                </select>
+                <input type="text" id="customMaterial" name="customMaterial" placeholder="If other, please specify">
+
+                <!-- Door Type -->
+                <label for="doorType">What type of door will be installed or repaired?</label>
+                <select id="doorType" name="doorType" required>
+                    <option value="interior">Interior Door</option>
+                    <option value="exterior">Exterior Door</option>
+                    <option value="sliding">Sliding Door</option>
+                    <option value="french">French Door</option>
+                    <option value="custom">Custom Door (specify below)</option>
+                </select>
+
+                <!-- Special Requirements -->
+                <label for="specialRequirements">Any special installation needs or custom measurements?</label>
+                <input type="text" id="specialRequirements" name="specialRequirements" placeholder="Please specify if needed">
+
+                <!-- Preferred Time for Service -->
+                <label for="preferredTime">Preferred Time for Service:</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Request</button>
+            </form>
+
+            <div id="priceOutput" class="price-output"></div>
+            <div id="booking-button-container"></div> <!-- Placeholder for the "Book This Service" button -->
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('doorFrameForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for calculation
+
+            // Get values from the form
+            const serviceType = document.getElementById('serviceType').value;
+            const materialPreference = document.getElementById('materialPreference').value;
+            const doorType = document.getElementById('doorType').value;
+            const specialRequirements = document.getElementById('specialRequirements').value;
+            const preferredTime = document.getElementById('preferredTime').value; // Get the time
+
+            // Base rate calculation
+            const baseRate = serviceType === 'replacement' ? 400 : serviceType === 'installation' ? 500 : 200;
+            let materialCost = materialPreference === 'wood' ? 100 : materialPreference === 'metal' ? 150 : 200;
+            let customCost = specialRequirements ? 100 : 0; // Extra charge for custom needs
+
+            // Calculate total cost
+            const totalCost = baseRate + materialCost + customCost;
+
+            // VAT Calculation (15% of totalCost)
+            const vat = totalCost * 0.15;
+            
+            // Service Fee
+            const serviceFee = 200;
+
+            // Calculate Total Amount
+            const totalAmount = totalCost + vat + serviceFee;
+
+            // Display the calculated price and preferred time
+            document.getElementById('priceOutput').innerHTML = `
+                <h3>Estimated Price for Door Frame Services</h3>
+                <p>The estimated cost for your door frame service is <strong>$${totalCost.toFixed(2)}</strong>.</p>
+                <p>Your preferred time for service is: <strong>${preferredTime}</strong>.</p>
+            `;
+
+            // Create the "Book This Service" button if not already created
+            const bookingContainer = document.getElementById('booking-button-container');
+            bookingContainer.innerHTML = ''; 
+            
+            // Clear previous button if any
+            const bookButton = document.createElement('button');
+            bookButton.textContent = "Book This Service";
+            bookButton.style.cssText = 'margin-top: 20px; padding: 10px 20px; background-color: green; color: white; border: none; cursor: pointer;';
+            
+            // Set button to navigate to the booking page with total amount, VAT, and service fee in URL params (or save to localStorage for access)
+            bookButton.onclick = function() {
+                // Saving details to localStorage for easy retrieval on the booking page
+                localStorage.setItem('totalCost', totalCost);
+                localStorage.setItem('vat', vat);
+                localStorage.setItem('serviceFee', serviceFee);
+                localStorage.setItem('totalAmount', totalAmount);
+                
+                window.location.href = "../../Bookings/reserve_service.html";
+                    };
+            
+                    // Add the button to the container
+                    bookingContainer.appendChild(bookButton);
+                });
+            </script>
+</body>
+</html>

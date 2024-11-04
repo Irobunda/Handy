@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Services:Drain Cleaning</title>
+    <link rel="stylesheet" href="../../styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+
+
+    <div id="header-placeholder"></div> <!-- Placeholder for header -->
+    <!-- Load header with JavaScript -->
+    <script>
+        fetch('../../header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
+        
+     <!-- Banner Image -->
+     <section class="banner">
+        <img src="../../images/pipe_installation_banner.jpg" alt="Pipe Installation Banner" class="banner-image">
+    </section>
+
+    <!-- Main Content for Drain Cleaning -->
+    <div class="content-flex-container">
+        <!-- Drain Cleaning Content -->
+        <section class="drain-cleaning-content">
+            <h1>Drain Cleaning Services</h1>
+            <p>
+                Clogged drains can be a real hassle, leading to unpleasant odors, slow draining water, or even complete blockages. Our professional drain cleaning services help ensure your drainage system remains clear and functions optimally.
+            </p>
+            <p>
+                Whether you're dealing with a minor clog or a complete blockage, our team is equipped with advanced tools to handle it all. From kitchen sinks to outdoor drains, we've got you covered.
+            </p>
+
+            <h2>Why Choose Us?</h2>
+            <ul>
+                <li>Expert Solutions: Our technicians are trained to handle even the most stubborn blockages.</li>
+                <li>Safe and Efficient Methods: We use modern techniques that safely clear your drains without causing any damage.</li>
+                <li>Cost-Effective: We offer upfront pricing with no hidden fees, so you always know the cost of your service.</li>
+                <li>24/7 Availability: Clogged drains don’t wait, and neither do we. We're here for you any time you need us.</li>
+            </ul>
+        </section>
+
+        <!-- Form Section -->
+        <section class="quote-form-container">
+            <h2>Get a Price Estimate</h2>
+
+            <form id="drainCleaningForm">
+                <!-- Contact Information -->
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+                
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="address">Address (including unit number if applicable):</label>
+                <input type="text" id="address" name="address" required>
+
+                <!-- Type of Drain -->
+                <label for="drainType">What type of drain is clogged?</label>
+                <select id="drainType" name="drainType" required>
+                    <option value="kitchenSink">Kitchen Sink</option>
+                    <option value="bathroomSink">Bathroom Sink</option>
+                    <option value="showerTub">Shower/Tub</option>
+                    <option value="floorDrain">Floor Drain</option>
+                    <option value="outdoorDrain">Outdoor Drain</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <!-- Severity of Clog -->
+                <label for="clogSeverity">How severe is the clog?</label>
+                <select id="clogSeverity" name="clogSeverity" required>
+                    <option value="minor">Minor (Slow draining)</option>
+                    <option value="moderate">Moderate (Water pooling, but draining)</option>
+                    <option value="severe">Severe (Completely blocked)</option>
+                </select>
+
+                <!-- Drain Access -->
+                <label for="accessDetails">Is the drain easy to access? (Yes/No, and details if relevant):</label>
+                <input type="text" id="accessDetails" name="accessDetails" placeholder="Yes/No. Please specify any difficulties.">
+
+                <!-- Preferred Time for Service -->
+                <label for="preferredTime">Preferred Time for Service:</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Request</button>
+            </form>
+
+            <div id="priceOutput" class="price-output"></div>
+            <div id="booking-button-container"></div> <!-- Placeholder for the "Book This Service" button -->
+
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('drainCleaningForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for calculation
+
+            // Get values from the form
+            const clogSeverity = document.getElementById('clogSeverity').value;
+            const drainType = document.getElementById('drainType').value;
+            const accessDetails = document.getElementById('accessDetails').value;
+            const preferredTime = document.getElementById('preferredTime').value; // Get the time
+
+            // Base rate calculation
+            const baseRate = 80; // Hourly rate for drain cleaning
+            let severityMultiplier = clogSeverity === 'moderate' ? 1.5 : clogSeverity === 'severe' ? 2.0 : 1;
+
+            // Additional cost for hard-to-access drains
+            let accessCost = accessDetails.toLowerCase().includes('no') ? 50 : 0;
+
+            // Calculate total cost
+            const laborCost = baseRate * severityMultiplier;
+            const totalCost = laborCost + accessCost;
+
+            // VAT Calculation (15% of totalCost)
+            const vat = totalCost * 0.15;
+            
+            // Service Fee
+            const serviceFee = 200;
+
+            // Calculate Total Amount
+            const totalAmount = totalCost + vat + serviceFee;
+            // Display the calculated price and preferred time
+            document.getElementById('priceOutput').innerHTML = `
+                <h3>Estimated Price for Drain Cleaning</h3>
+                <p>The estimated cost for your drain cleaning service is <strong>$${totalCost.toFixed(2)}</strong>.</p>
+                <p>Your preferred time for service is: <strong>${preferredTime}</strong>.</p>
+            `;
+
+            // Create the "Book This Service" button if not already created
+            const bookingContainer = document.getElementById('booking-button-container');
+            bookingContainer.innerHTML = ''; 
+            
+            // Clear previous button if any
+            const bookButton = document.createElement('button');
+            bookButton.textContent = "Book This Service";
+            bookButton.style.cssText = 'margin-top: 20px; padding: 10px 20px; background-color: green; color: white; border: none; cursor: pointer;';
+            
+            // Set button to navigate to the booking page with total amount, VAT, and service fee in URL params (or save to localStorage for access)
+            bookButton.onclick = function() {
+                // Saving details to localStorage for easy retrieval on the booking page
+                localStorage.setItem('totalCost', totalCost);
+                localStorage.setItem('vat', vat);
+                localStorage.setItem('serviceFee', serviceFee);
+                localStorage.setItem('totalAmount', totalAmount);
+                
+                window.location.href = "../../Bookings/reserve_service.html";
+                    };
+            
+                    // Add the button to the container
+                    bookingContainer.appendChild(bookButton);
+                });
+            </script>
+</body>
+</html>

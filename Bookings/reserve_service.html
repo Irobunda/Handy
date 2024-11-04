@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Service Reservation & Payment</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+            <div class="logo">
+                <a href="../index.html" class="home-link">Handyman</a>
+            </div>
+        <nav class="nav-links">
+            <a href="../service.html">Services</a>
+            <a href="#">Visitor</a>
+            <a href="#">Become a Pro</a>
+            <a href="#">FAQ</a>
+        </nav>
+    </header>
+
+    <script>
+        // Load stored values from localStorage and display them on the page
+        document.addEventListener('DOMContentLoaded', function () {
+            const totalCost = parseFloat(localStorage.getItem('totalCost')) || 0;
+            const vat = parseFloat(localStorage.getItem('vat')) || 0;
+            const serviceFee = parseFloat(localStorage.getItem('serviceFee')) || 0;
+            const totalAmount = parseFloat(localStorage.getItem('totalAmount')) || 0;
+
+            // Display the values in the appropriate HTML elements
+            document.getElementById('estimatedCost').textContent = `$${totalCost.toFixed(2)}`;
+            document.getElementById('vatAmount').textContent = `$${vat.toFixed(2)}`;
+            document.getElementById('serviceFee').textContent = `$${serviceFee.toFixed(2)}`;
+            document.getElementById('totalAmount').textContent = `$${totalAmount.toFixed(2)}`;
+        });
+    </script>
+
+
+     <div class="content-flex-container">
+        <section class="reservation-container">
+            <h2>Complete Your Booking</h2>
+            <p class="intro-text">Great! We have availability at this time. A few more details, and we can complete your booking.</p>
+    
+            <!-- Service Details & Quote Section -->
+            <section class="quote-section">
+                <h3>Your Estimated Quote</h3>
+                <p class="service-detail">Estimated Service Cost: <strong id="estimatedCost">$0.00</strong></p>
+                <p class="service-detail">VAT (15%): <strong id="vatAmount">$0.00</strong></p>
+                <p class="service-detail">Service Fee: <strong id="serviceFee">$0.00</strong></p>
+                <hr>
+                <p class="total-amount">Total: <strong id="totalAmount">$0.00</strong></p>
+            </section>
+    
+            <!-- Payment Information Section -->
+            <section class="payment-section">
+                <h3>Payment Information</h3>
+    
+                <!-- Credit Card Information Box -->
+                <div class="payment-box">
+                    <label for="cardNumber">Credit Card Number:</label>
+                    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" required>
+                </div>
+    
+                <!-- Credit Card Logos -->
+                <div class="credit-card-logos">
+                    <img src="../Images/logos/visa-logo.png" alt="Visa">
+                    <img src="../Images/logos/mastercard-logo.png" alt="Mastercard">
+                    <img src="../Images/logos/Gpay.png" alt="Google Pay">
+                </div>
+    
+                <!-- Expiration Date and Security Code -->
+                <div class="payment-box">
+                    <label for="cardExpiration">Expiration Date:</label>
+                    <input type="month" id="cardExpiration" required>
+                </div>
+                <div class="payment-box">
+                    <label for="cardCVV">Security Code (CVV):</label>
+                    <input type="text" id="cardCVV" placeholder="123" required>
+                </div>
+            </section>
+    
+            <!-- Terms & Conditions Section -->
+            <section class="terms-section">
+                <label>
+                    <input type="checkbox" id="termsCheckbox" required>
+                    By clicking the button below, I accept the <a href="#">Terms and Conditions</a>.
+                </label>
+            </section>
+    
+            <!-- Complete Booking Button -->
+            <button type="submit" class="complete-booking-button">Complete Booking</button>
+         </section>    
+        </div>
+            <script>// Handle payment method selection and display relevant input fields
+                // Handle payment method selection and display relevant input fields
+                document.getElementById('paymentMethod').addEventListener('change', function () {
+                    const paymentMethod = this.value;
+                    
+                    // Hide all payment info sections
+                    const paymentInfoElements = document.querySelectorAll('.payment-info');
+                    paymentInfoElements.forEach(element => element.style.display = 'none');
+
+                    // Display the selected payment method section
+                    if (paymentMethod === 'creditCard') {
+                        document.getElementById('creditCardInfo').style.display = 'block';
+                    } else if (paymentMethod === 'paypal') {
+                        document.getElementById('paypalInfo').style.display = 'block';
+                    } else if (paymentMethod === 'googlePay') {
+                        document.getElementById('googlePayInfo').style.display = 'block';
+                    }
+                });
+
+                // Handle checkbox validation for terms and conditions
+                document.querySelector('.complete-booking-button').addEventListener('click', function (event) {
+                    const termsCheckbox = document.getElementById('termsCheckbox');
+                    if (!termsCheckbox.checked) {
+                        alert("Please accept the Terms and Conditions to proceed.");
+                        event.preventDefault();
+                    }
+                });
+            </script>
+       </body>
+      </html>

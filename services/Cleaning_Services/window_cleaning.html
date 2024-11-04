@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Window Cleaning Services</title>
+    <link rel="stylesheet" href="../../styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+
+
+    <div id="header-placeholder"></div> <!-- Placeholder for header -->
+    <!-- Load header with JavaScript -->
+    <script>
+        fetch('../../header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
+
+        
+     <!-- Banner Image -->
+     <section class="banner">
+        <img src="../../images/cleaning_services.jpg" alt="cleaning services Banner" class="banner-image">
+    </section>
+     <!-- Main Content for Window Cleaning Services -->
+     <div class="content-flex-container">
+        <!-- Window Cleaning Content -->
+        <section class="window-cleaning-content">
+            <h1>Window Cleaning Services</h1>
+            <p>
+                Keep your windows spotless and streak-free with our professional window cleaning services. Whether you need residential or commercial window cleaning, we use advanced techniques and equipment to clean windows inside and out, leaving them gleaming.
+            </p>
+            <p>
+                We handle everything from small windows to high-rise buildings, ensuring a clear view and a clean, polished appearance. Our services are customizable to meet your specific needs and schedule.
+            </p>
+
+            <h2>Why Choose Us?</h2>
+            <ul>
+                <li>Highly Skilled Professionals: Our team is trained in safe and effective window cleaning methods.</li>
+                <li>Interior and Exterior: We clean both interior and exterior windows for a comprehensive service.</li>
+                <li>Eco-Friendly Products: We use eco-friendly products that are safe for your home, office, and the environment.</li>
+                <li>Flexible Scheduling: We work around your schedule to minimize disruption to your day.</li>
+                <li>Affordable Pricing: Transparent and competitive pricing with no hidden fees.</li>
+            </ul>
+        </section>
+
+        <!-- Form Section -->
+        <section class="quote-form-container">
+            <h2>Get a Price Estimate </h2>
+
+            <form id="windowCleaningForm">
+                <!-- Contact Information -->
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+                
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="address">Address (including unit number if applicable):</label>
+                <input type="text" id="address" name="address" required>
+
+                <!-- Type of Window Cleaning -->
+                <label for="cleaningType">What type of window cleaning service do you need?</label>
+                <select id="cleaningType" name="cleaningType" required>
+                    <option value="residential">Residential Window Cleaning</option>
+                    <option value="commercial">Commercial Window Cleaning</option>
+                    <option value="highRise">High-Rise Window Cleaning</option>
+                </select>
+
+                <!-- Number of Windows -->
+                <label for="windowCount">How many windows need to be cleaned?</label>
+                <input type="number" id="windowCount" name="windowCount" min="1" required>
+
+                <!-- Access to Windows -->
+                <label for="accessDetails">Are the windows easy to access? (Yes/No, and details if relevant):</label>
+                <input type="text" id="accessDetails" name="accessDetails" placeholder="Yes/No. Please specify any difficulties.">
+
+                <!-- Preferred Time for Service -->
+                <label for="preferredTime">Preferred Time for Service:</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Request</button>
+            </form>
+
+            <div id="priceOutput" class="price-output"></div> 
+            <div id="booking-button-container"></div> <!-- Placeholder for the "Book This Service" button -->
+
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('windowCleaningForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for calculation
+    
+            // Get values from the form
+            const cleaningType = document.getElementById('cleaningType').value;
+            const windowCount = parseInt(document.getElementById('windowCount').value, 10);
+            const accessDetails = document.getElementById('accessDetails').value;
+            const preferredTime = document.getElementById('preferredTime').value;
+    
+            // Check if windowCount is a valid number
+            if (isNaN(windowCount) || windowCount < 0) {
+                alert("Please enter a valid number of windows.");
+                return;
+            }
+    
+            // Base rate calculation
+            const baseRate = cleaningType === 'highRise' ? 300 : cleaningType === 'commercial' ? 200 : 150;
+            const windowCost = windowCount * 10; // Charge $10 per window
+            const accessCost = accessDetails.toLowerCase().includes('no') ? 50 : 0; // Extra charge for hard-to-access sites
+    
+            // Calculate total cost
+            const totalCost = baseRate + windowCost + accessCost;
+    
+            // VAT Calculation (15% of totalCost)
+            const vat = totalCost * 0.15;
+            
+            // Service Fee
+            const serviceFee = 200;
+
+            // Calculate Total Amount
+            const totalAmount = totalCost + vat + serviceFee;
+
+            // Display the calculated price and preferred time
+            document.getElementById('priceOutput').innerHTML = `
+                <h3>Estimated Price for Window Cleaning Services</h3>
+                <p>The estimated cost for your window cleaning service is <strong>$${totalCost.toFixed(2)}</strong>.</p>
+                <p>Your preferred time for service is: <strong>${preferredTime}</strong>.</p>
+            `;
+
+            // Create the "Book This Service" button if not already created
+            const bookingContainer = document.getElementById('booking-button-container');
+            bookingContainer.innerHTML = ''; 
+            
+            // Clear previous button if any
+            const bookButton = document.createElement('button');
+            bookButton.textContent = "Book This Service";
+            bookButton.style.cssText = 'margin-top: 20px; padding: 10px 20px; background-color: green; color: white; border: none; cursor: pointer;';
+            
+            // Set button to navigate to the booking page with total amount, VAT, and service fee in URL params (or save to localStorage for access)
+            bookButton.onclick = function() {
+                // Saving details to localStorage for easy retrieval on the booking page
+                localStorage.setItem('totalCost', totalCost);
+                localStorage.setItem('vat', vat);
+                localStorage.setItem('serviceFee', serviceFee);
+                localStorage.setItem('totalAmount', totalAmount);
+                
+                window.location.href = "../../Bookings/reserve_service.html";
+                    };
+            
+                    // Add the button to the container
+                    bookingContainer.appendChild(bookButton);
+                });
+            </script>
+    
+
+        </body>
+    </html>

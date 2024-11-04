@@ -1,0 +1,2674 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and Overall Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+/* Header Styling */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px; /* Header padding */
+    background-color: rgb(21, 0, 255); /* Changed to red */
+    position: fixed; /* Fixed header */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width header */
+    z-index: 1000; /* Keep the header on top */
+    height: 60px; /* Define the height for the header */
+}
+
+/* Left Side (Home) */
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.home-link {
+    color: #0e0e0f;
+    text-decoration: none;
+}
+
+.home-link:hover {
+    text-decoration: underline;
+}
+
+/* Right Side (Navigation Links) */
+.nav-links {
+    display: flex;
+    gap: 35px; /* Space between each link */
+    margin-right: 200px; /* Align with the text block which has right: 200px; */
+
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+}
+
+/* Container Styling with Responsive Full-Screen Background */
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full-screen height */
+    background-color: rgb(248, 248, 248); /* Green background */
+    padding-top: 80px; /* This padding compensates for the fixed header */
+}
+
+/* Text Overlay Styling */
+.text-block {
+    position: absolute;
+    bottom: 50px; /* Positioning at the bottom */
+    right: 200px; /* Positioning on the right */
+    color: rgb(15, 15, 15);
+    padding: 20px;
+    border-radius: 5px;
+    line-height: 1.5; /* Space between text lines */
+    text-align: left; /* Align text to the left */
+}
+
+.text-block h4 {
+    margin-bottom: 10px; /* Add space below the header */
+}
+
+.text-block p {
+    margin: 0;
+}
+
+/* Hover effect for the entire "hover" div */
+.hover {
+    position: relative;
+    padding: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow: hidden;
+}
+/* Hover effect for <p> */
+.hover p {
+    cursor: pointer; /* Pointer on hover */
+    text-decoration: none; /* No underline by default */
+    color: #000; /* Default color */
+}
+
+
+/* When the user hovers over the "hover" div, it gets a white overlay */
+.hover:hover, .hover.active { /* Apply same style on hover and active */
+    background-color: rgba(58, 218, 165, 0.8); /* Semi-transparent white */
+    border-radius: 5px;
+}
+
+/* Change text color for p and h3 on hover to ensure visibility */
+.hover:hover p,
+.hover:hover h3,
+.hover.active p,
+.hover.active h3 { /* Same text color change for active state */
+    color: black; /* Make the text black to contrast with the white background */
+}
+
+
+/* Footer-like text inside the background for the company name */
+.footer-text {
+    position: absolute;
+    bottom: 10px;  /* Distance from the bottom */
+    right: 20px;   /* Distance from the right */
+    color: rgb(12, 12, 12);
+    font-size: 0.9rem;
+    opacity: 30;
+}
+
+/* Short summary text on the bottom-left */
+.summary-text {
+    position: absolute;
+    bottom: 20px;  /* Distance from the bottom */
+    left: 20px;    /* Distance from the left */
+    color: rgb(14, 14, 14);
+    font-size: 1.3rem;  /* Small font for readability */
+    max-width: 300px;   /* Keep it concise, small enough to fit the corner */
+    line-height: 1.4;   /* Spacing between lines for readability */
+    opacity: 0.8;       /* Slight transparency */
+}
+
+#service-image {
+    display: none; /* Hide the image by default */
+    width: 50%; /* Set the width to 50% */
+    max-height: fit-content;
+    object-fit: cover; /* Ensure the image is well-fitted */
+    margin: 0 auto;
+    margin-left: 5%; /* Move the image to the left by 25% of its width (50% of current position) */
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------
+/* Service css start from here o*/
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header Styling */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: green;
+    color: rgb(15, 15, 15);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links a {
+    margin-left: 20px;
+    color: rgb(11, 11, 11);
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+.nav-links a:hover {
+    text-decoration: none; /* Remove underline */
+}
+
+/* Services Container */
+.services-container {
+    display: flex;
+    flex-direction: column;
+    gap: 60px; /* Space between each service block */
+    max-width: 1200px;
+    margin: 100px auto 0; /* Start below the header */
+}
+
+/* Service Block Styling */
+.service-block {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;    
+}
+
+/* Image Container and Image Styling */
+.service-image-container {
+    flex: 1.5; /* Take up 50% of the width */
+}
+
+.service-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Text and List Styling */
+.service-details {
+    flex: 1; /* Take up 50% of the width */
+    padding: 20px;
+    text-decoration: none; /* Remove underline */
+
+}
+
+.service-details h2 {
+    margin-bottom: 20px;
+    color: #333;
+    text-decoration: none; /* Remove underline */
+
+}
+
+.service-details ul {
+    list-style: none;
+    padding: 0;
+    text-decoration: none; /* Remove underline */
+
+}
+
+.service-details ul li {
+    margin-bottom: 18px;
+    font-size: 1rem;
+    color: #666;
+    text-decoration: none; /* Remove underline */
+
+}
+
+/* Alternating Layouts */
+.service-left {
+    flex-direction: row; /* Image on the left, text on the right */
+}
+
+.service-right {
+    flex-direction: row-reverse; /* Image on the right, text on the left */
+}
+
+/* Mobile Responsive Design */
+@media screen and (max-width: 768px) {
+    .service-block {
+        flex-direction: column; /* Stack image and text on mobile */
+    }
+
+    .service-image-container {
+        width: 100%; /* Image takes full width on mobile */
+    }
+
+    .service-details {
+        width: 100%; /* Text also takes full width on mobile */
+    }
+}
+
+------------------------------------------------------------------------------------------------------------------------
+/* pipe installation */
+
+/* Banner Section */
+.banner {
+    margin-top: 60px; /* Push content down due to fixed header */
+    height: 25vh; /* Set the height to 25% of the viewport */
+    width: 100%;
+    overflow: hidden;
+}
+
+.banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the area without stretching */
+}
+
+/* Flex Container for Content and Form */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 40px auto;
+    gap: 30px; /* Space between the text and form */
+}
+
+/* Pipe Installation Content Styling */
+.pipe-installation-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9; /* Light gray background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.pipe-installation-content h1 {
+    font-size: 2.5rem;
+    color: #2c3e50; /* Dark slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.pipe-installation-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555; /* Medium gray for text */
+    margin-bottom: 20px;
+}
+
+.pipe-installation-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+}
+
+.pipe-installation-content ul {
+    list-style-type: none; /* Remove default bullets */
+    padding-left: 0;
+}
+
+.pipe-installation-content ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.pipe-installation-content ul li::before {
+    content: "✓"; /* Checkmark for bullet points */
+    position: absolute;
+    left: 0;
+    color: #27ae60; /* Green for checkmarks */
+    font-weight: bold;
+}
+
+.pipe-installation-content strong {
+    color: #2c3e50; /* Highlighted keywords in darker color */
+}
+
+/* Form Container (on the right) */
+.quote-form-container {
+    flex: 1;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.quote-form-container h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.quote-form-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #666;
+}
+
+.quote-form-container input,
+.quote-form-container textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.quote-form-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.quote-form-container button:hover {
+    background-color: darkgreen;
+}
+
+/* Price Output Section */
+.price-output {
+    margin-top: 20px;
+    background-color: #e3f4e3;
+    padding: 20px;
+    border: 1px solid #c2e0c2;
+    border-radius: 4px;
+}
+
+.price-output h3 {
+    color: green;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .content-flex-container {
+        flex-direction: column; /* Stack the text and form on small screens */
+    }
+
+    .pipe-installation-content, .quote-form-container {
+        margin-bottom: 20px;
+    }
+}
+------------------------------------------------------------------------------------------------------------------------------------------
+
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Leak Repair Content Styling */
+.leak-repair-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.leak-repair-content h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.leak-repair-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.leak-repair-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+}
+
+.leak-repair-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.leak-repair-content ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.leak-repair-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.leak-repair-content strong {
+    color: #34495e;
+}
+
+/* Quote Form Styling */
+.quote-form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.quote-form-container h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.quote-form-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #666;
+}
+
+.quote-form-container select,
+.quote-form-container input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.quote-form-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.quote-form-container button:hover {
+    background-color: darkgreen;
+}
+
+/* Price Output Section */
+.price-output {
+    margin-top: 20px;
+    background-color: #e3f4e3;
+    padding: 20px;
+    border: 1px solid #c2e0c2;
+    border-radius: 4px;
+}
+
+.price-output h3 {
+    color: green;
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+/* Flex Container for Drain Cleaning Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* Drain Cleaning Content Styling */
+.drain-cleaning-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.drain-cleaning-content h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.drain-cleaning-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.drain-cleaning-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+}
+
+.drain-cleaning-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.drain-cleaning-content ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.drain-cleaning-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.drain-cleaning-content strong {
+    color: #34495e;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+/* Flex Container for Water Heater Installation Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+
+.water-heater-installation-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.water-heater-installation-content h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.water-heater-installation-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.water-heater-installation-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+}
+
+.water-heater-installation-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.water-heater-installation-content ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.water-heater-installation-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.water-heater-installation-content strong {
+    color: #34495e;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+/* Flex Container for Toilet Repair Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.toilet-repair-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.toilet-repair-content h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.toilet-repair-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.toilet-repair-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+}
+
+.toilet-repair-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.toilet-repair-content ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.toilet-repair-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.toilet-repair-content strong {
+    color: #34495e;
+}
+-------------------------------------------------------------------------------------------------------------------------------------
+
+/* Flex Container for lighting installation Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.lighting-installation-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.lighting-installation-content h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.lighting-installation-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.lighting-installation-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+}
+
+.lighting-installation-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.lighting-installation-content ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.lighting-installation-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.lighting-installation-content strong {
+    color: #34495e;
+}
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+/* Flex Container for inverter battery Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.inverter-battery-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.inverter-battery-content h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.inverter-battery-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.inverter-battery-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+}
+
+.inverter-battery-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.inverter-battery-content ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.inverter-battery-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.inverter-battery-content strong {
+    color: #34495e;
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+/* Flex Container for surge protection Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.surge-protection-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.surge-protection-content h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.surge-protection-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.surge-protection-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+}
+
+.surge-protection-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.surge-protection-content ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.surge-protection-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.surge-protection-content strong {
+    color: #34495e;
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+/* Flex Container for lighting installation Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+.electrical-repairs-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.electrical-repairs-content h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.electrical-repairs-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.electrical-repairs-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+}
+
+.electrical-repairs-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.electrical-repairs-content ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.electrical-repairs-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.electrical-repairs-content strong {
+    color: #34495e;
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+/* Flex Container for lighting installation Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.generator-installation-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.generator-installation-content h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.generator-installation-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.generator-installation-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+}
+
+.generator-installation-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.generator-installation-content ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.generator-installation-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.generator-installation-content strong {
+    color: #34495e;
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+/* Flex Container for lighting installation Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.carpet-cleaning-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carpet-cleaning-content h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.carpet-cleaning-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.carpet-cleaning-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+}
+
+.carpet-cleaning-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.carpet-cleaning-content ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.carpet-cleaning-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.carpet-cleaning-content strong {
+    color: #34495e;
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+/* Flex Container for Deep Cleaning Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.deep-cleaning-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.deep-cleaning-content h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.deep-cleaning-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.deep-cleaning-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+}
+
+.deep-cleaning-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.deep-cleaning-content ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.deep-cleaning-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.deep-cleaning-content strong {
+    color: #34495e;
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+/* Flex Container for Home Cleaning Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+   .home-cleaning-content {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .home-cleaning-content h1 {
+        font-size: 2.5rem;
+        color: #34495e; /* Darker slate blue */
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .home-cleaning-content p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #555;
+        margin-bottom: 20px;
+    }
+    
+    .home-cleaning-content h2 {
+        font-size: 1.8rem;
+        color: #27ae60; /* Green for the subheading */
+        margin-top: 30px;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #27ae60; /* Green underline */
+        padding-bottom: 5px;
+    }
+    
+    .home-cleaning-content ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+    
+    .home-cleaning-content ul li {
+        font-size: 1.1rem;
+        color: #333;
+        margin-bottom: 10px;
+        padding-left: 25px;
+        position: relative;
+    }
+    
+    .home-cleaning-content ul li::before {
+        content: "✓"; /* Green checkmark */
+        position: absolute;
+        left: 0;
+        color: #27ae60;
+        font-weight: bold;
+    }
+    
+    .home-cleaning-content strong {
+        color: #34495e;
+    }
+    
+    --------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    /* Flex Container for Office Cleaning Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.office-cleaning-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.office-cleaning-content h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.office-cleaning-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.office-cleaning-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+}
+
+.office-cleaning-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.office-cleaning-content ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.office-cleaning-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.office-cleaning-content strong {
+    color: #34495e;
+}
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+/* Flex Container for window-cleaning Section */
+.content-flex-container {
+display: flex;
+justify-content: space-between;
+padding: 20px;
+}
+
+.window-cleaning-content {
+max-width: 800px;
+margin: 40px auto;
+padding: 30px;
+background-color: #f9f9f9;
+border-radius: 8px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.window-cleaning-content h1 {
+font-size: 2.5rem;
+color: #34495e; /* Darker slate blue */
+margin-bottom: 20px;
+text-align: center;
+}
+
+.window-cleaning-content p {
+font-size: 1.1rem;
+line-height: 1.6;
+color: #555;
+margin-bottom: 20px;
+}
+
+.window-cleaning-content h2 {
+font-size: 1.8rem;
+color: #27ae60; /* Green for the subheading */
+margin-top: 30px;
+margin-bottom: 15px;
+border-bottom: 2px solid #27ae60; /* Green underline */
+padding-bottom: 5px;
+}
+
+.window-cleaning-content ul {
+list-style-type: none;
+padding-left: 0;
+}
+
+.window-cleaning-content ul li {
+font-size: 1.1rem;
+color: #333;
+margin-bottom: 10px;
+padding-left: 25px;
+position: relative;
+}
+
+.window-cleaning-content ul li::before {
+content: "✓"; /* Green checkmark */
+position: absolute;
+left: 0;
+color: #27ae60;
+font-weight: bold;
+}
+
+.window-cleaning-content strong {
+color: #34495e;
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+/* Flex Container for Appliance Repair Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.appliance-repair-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .appliance-repair-content  h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+    }
+    
+    .appliance-repair-content  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    }
+    
+    .appliance-repair-content  h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+    }
+    
+    .appliance-repair-content  ul {
+    list-style-type: none;
+    padding-left: 0;
+    }
+    
+    .appliance-repair-content  ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+    }
+    
+    .appliance-repair-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+    }
+    
+    .appliance-repair-content strong {
+    color: #34495e;
+    }
+
+    -----------------------------------------------------------------------------------------------------------------------------------------
+    
+/* Flex Container for Automated and Sensor Installation Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.automated-sensor-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .automated-sensor-content h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+    }
+    
+    .automated-sensor-content  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    }
+    
+    .automated-sensor-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+    }
+
+    .automated-sensor-content  ul {
+    list-style-type: none;
+    padding-left: 0;
+    }
+    
+    .automated-sensor-content  ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+    }
+    
+    .automated-sensor-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+    }
+    
+    .automated-sensor-content strong {
+    color: #34495e;
+    }
+    ---------------------------------------------------------------------------------------------------------------------------------------------
+
+    /* Flex Container for Camera Installation Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.camera-installation-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .camera-installation-content h1{
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+    }
+    
+    .camera-installation-content  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    }
+    
+    .camera-installation-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+    }
+
+    .camera-installation-content  ul {
+    list-style-type: none;
+    padding-left: 0;
+    }
+    
+    .camera-installation-content  ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+    }
+    
+    .camera-installation-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+    }
+    
+    .camera-installation-content strong {
+    color: #34495e;
+    }
+    ---------------------------------------------------------------------------------------------------------------------------------------------
+    /* Flex Container for Security Systems Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.security-systems-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .security-systems-content h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+    }
+
+    .security-systems-content  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    }
+    
+  .security-systems-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+    }
+
+    .security-systems-content  ul {
+    list-style-type: none;
+    padding-left: 0;
+    }
+    
+    .security-systems-content  ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+    }
+    
+    .security-systems-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+    }
+    .security-systems-content strong {
+    color: #34495e;
+    }
+    ---------------------------------------------------------------------------------------------------------------------------------------
+
+
+/* Flex Container for Smart Device Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.smartdevice-installation-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .smartdevice-installation-content h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+    }
+    
+    .smartdevice-installation-content  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    }
+    
+    .smartdevice-installation-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+    }
+
+    .smartdevice-installation-content  ul {
+    list-style-type: none;
+    padding-left: 0;
+    }
+    
+    .smartdevice-installation-content  ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+    }
+    
+    .smartdevice-installation-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+    }
+    
+    .smartdevice-installation-content strong {
+    color: #34495e;
+    }
+    -------------------------------------------------------------------------------------------------------------------------------------
+
+/* Flex Container for Wi-Fi Router Setup Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.wifi-router-setup-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .wifi-router-setup-content h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+    }
+    
+    .wifi-router-setup-content  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    }
+    
+    .wifi-router-setup-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+    }
+
+    .wifi-router-setup-content  ul {
+    list-style-type: none;
+    padding-left: 0;
+    }
+    
+    .wifi-router-setup-content  ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+    }
+    
+    .wifi-router-setup-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+    }
+    
+    .wifi-router-setup-content strong {
+    color: #34495e;
+    }
+------------------------------------------------------------------------------------------------------------------------------------------------
+/* Flex Container for Cabinet Installation Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.cabinet-installation-content  {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .cabinet-installation-contentt h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+    }
+    
+    .cabinet-installation-content  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    }
+    
+    .cabinet-installation-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+    }
+
+    .cabinet-installation-content  ul {
+    list-style-type: none;
+    padding-left: 0;
+    }
+    
+    .cabinet-installation-content  ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+    }
+    
+    .cabinet-installation-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+    }
+    
+    .cabinet-installation-content strong {
+    color: #34495e;
+    }
+-------------------------------------------------------------------------------------------------------------------------------------------------
+/* Flex Container for Custom Furniture Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.custom-furniture-content  {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .custom-furniture-content  h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+    }
+    
+    .custom-furniture-content  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    }
+    
+    .custom-furniture-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+    }
+
+    .custom-furniture-content  ul {
+    list-style-type: none;
+    padding-left: 0;
+    }
+    
+   .custom-furniture-content  ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+    }
+    
+    .custom-furniture-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+    }
+    
+    .custom-furniture-content strong {
+    color: #34495e;
+    }
+    ---------------------------------------------------------------------------------------------------------------------------------------------
+   
+ /* Flex Container for Door Frame Services Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.door-frame-services-content{
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .door-frame-services-content  h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+    }
+
+    .door-frame-services-content  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    }
+    
+    .door-frame-services-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+    }
+
+    .door-frame-services-content  ul {
+    list-style-type: none;
+    padding-left: 0;
+    }
+    
+    .door-frame-services-content  ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+    }
+    
+    .door-frame-services-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+    }
+    
+    .door-frame-services-content strong {
+    color: #34495e;
+    }
+    ---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+/* Flex Container for Roof Repair and Carpentry Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.roof-repair-carpentry-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .roof-repair-carpentry-content  h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+    }
+
+    .roof-repair-carpentry-content  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    }
+    
+    .roof-repair-carpentry-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+    }
+
+    .roof-repair-carpentry-content  ul {
+    list-style-type: none;
+    padding-left: 0;
+    }
+    
+    .roof-repair-carpentry-content  ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+    }
+
+    .roof-repair-carpentry-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+    }
+    
+  .roof-repair-carpentry-ontent strong {
+    color: #34495e;
+    }
+
+    ---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+/* Flex Container for Wooden Flooring Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.wooden-flooring-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .wooden-flooring-content  h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+    }
+
+    .wooden-flooring-content  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    }
+    
+    .wooden-flooring-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+    }
+
+    .wooden-flooring-content  ul {
+    list-style-type: none;
+    padding-left: 0;
+    }
+    
+    .wooden-flooring-content  ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+    }
+
+    .wooden-flooring-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+    }
+    
+    .wooden-flooring-content strong {
+    color: #34495e;
+    }
+
+    ---------------------------------------------------------------------------------------------------------------------------------------------
+    /* Flex Container for Fixture Installation Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.fixture-installation-content{
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .fixture-installation-content  h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+    }
+
+    .fixture-installation-content  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    }
+    
+    .fixture-installation-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+    }
+
+    .fixture-installation-content  ul {
+    list-style-type: none;
+    padding-left: 0;
+    }
+    
+    .fixture-installation-content  ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+    }
+
+    .fixture-installation-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+    }
+    
+    .fixture-installation-content strong {
+    color: #34495e;
+    }
+ -----------------------------------------------------------------------------------------------------------------------------------------
+
+/* Flex Container for Furniture Assembly and Moving Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.furniture-assembly-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .furniture-assembly-content  h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+    }
+
+    .furniture-assembly-content  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    }
+    
+    .furniture-assembly-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+    }
+
+    .furniture-assembly-content ul {
+    list-style-type: none;
+    padding-left: 0;
+    }
+    
+    .furniture-assembly-content ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+    }
+
+    .furniture-assembly-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+    }
+    
+   .furniture-assembly-content strong {
+    color: #34495e;
+    }
+
+    ------------------------------------------------------------------------------------------------------------------------------------------------
+    /* Flex Container for General Maintenance Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.general-maintenance-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .general-maintenance-content h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+    }
+
+    .general-maintenance-content  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    }
+    
+    .general-maintenance-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+    }
+
+    .general-maintenance-content  ul {
+    list-style-type: none;
+    padding-left: 0;
+    }
+    
+    .general-maintenance-content  ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+    }
+
+    .general-maintenance-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+    }
+    
+    .general-maintenance-content strong {
+    color: #34495e;
+    }
+
+    ---------------------------------------------------------------------------------------------------------------------------------------------
+    /* Flex Container for Home Repair Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.home-repair-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .home-repair-content h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+    }
+
+    .home-repair-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    }
+    
+    .home-repair-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+    }
+
+    .home-repair-content  ul {
+    list-style-type: none;
+    padding-left: 0;
+    }
+    
+    .home-repair-content  ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+    }
+
+    .home-repair-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+    }
+    
+    .home-repair-content strong {
+    color: #34495e;
+    }
+
+    ---------------------------------------------------------------------------------------------------------------------------------------------
+    /* Flex Container for Painting Services Section */
+.content-flex-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.painting-services-content {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .painting-services-content h1 {
+    font-size: 2.5rem;
+    color: #34495e; /* Darker slate blue */
+    margin-bottom: 20px;
+    text-align: center;
+    }
+
+    .painting-services-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    }
+    
+    .painting-services-content h2 {
+    font-size: 1.8rem;
+    color: #27ae60; /* Green for the subheading */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #27ae60; /* Green underline */
+    padding-bottom: 5px;
+    }
+
+    .painting-services-content ul {
+    list-style-type: none;
+    padding-left: 0;
+    }
+    
+    .painting-services-content  ul li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+    }
+
+    .painting-services-content ul li::before {
+    content: "✓"; /* Green checkmark */
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+    }
+    
+    .painting-services-content strong {
+    color: #34495e;
+    }
+    html {
+        scroll-behavior: smooth;
+    }
+
+--------------------------------------------------------------------------------------
+
+/* Header Styling */
+.main-header {
+    width: 100%;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* or fixed if you want it fixed at the top */
+    z-index: 10;
+}
+
+/* Main Content Styling */
+.main-content {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px; /* Adds space below the header */
+    padding: 20px;
+}
+
+
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1800px; /* Constrains width of container */
+    width: 100%;
+    padding: 30px;
+    margin: 40px auto; /* Center the FAQ container */
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.faq-container h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #283d04;
+}
+
+/* Adjust FAQ item styling for a clean look */
+.faq-item {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.faq-question {
+    width: 100%;
+    padding: 15px;
+    background-color: #f0efef;
+    color: #0e0d0d;
+    border: none;
+    text-align: left;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 15px;
+    font-size: 1rem;
+    background-color: #f5f0f0;
+    border-radius: 0 0 4px 4px;
+    transition: max-height 0.3s ease-out;
+}
+
+.faq-answer p {
+    padding: 15px 0;
+    margin: 0;
+    color: #333;
+}
+
+-----------------------------------------------------------------------------------
+#booking-button-container button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+#booking-button-container button:hover {
+    background-color: darkgreen;
+}
+
+--------------------------------------------------------------------------------------------
+ 
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    margin: 0;
+    padding: 0;
+}
+
+/* General Container Styling */
+.reservation-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin-top: 70px; /* Added margin to separate from header */
+}
+
+/* Headings and Intro Text */
+.reservation-container h2, .reservation-container h3 {
+    margin-bottom: 15px;
+}
+
+.reservation-container p.intro-text {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+/* Quote Section */
+.quote-section {
+    background-color: #f7f7f7;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.quote-section h3 {
+    margin-bottom: 10px;
+}
+
+.service-detail {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+.total-amount {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Payment Section */
+.payment-section .payment-box {
+    margin-bottom: 25px;
+}
+
+.payment-box label {
+    display: block;
+    margin-bottom: 15px;
+}
+
+.payment-box input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Credit Card Logos */
+.credit-card-logos {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.credit-card-logos img {
+    height: 25px;
+}
+
+/* Terms Section */
+.terms-section {
+    margin: 20px 0;
+}
+
+.terms-section label {
+    font-size: 0.9rem;
+}
+
+/* Complete Booking Button */
+.complete-booking-button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.complete-booking-button:hover {
+    background-color: #218838;
+}

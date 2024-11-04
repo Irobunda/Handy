@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Water Heater Installation</title>
+    <link rel="stylesheet" href="../../styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+
+
+    <div id="header-placeholder"></div> <!-- Placeholder for header -->
+    <!-- Load header with JavaScript -->
+    <script>
+        fetch('../../header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
+        
+     <!-- Banner Image -->
+     <section class="banner">
+        <img src="../../images/pipe_installation_banner.jpg" alt="Pipe Installation Banner" class="banner-image">
+    </section>
+
+
+    <!-- Main Content for Water Heater Installation -->
+    <div class="content-flex-container">
+        <!-- Water Heater Installation Content -->
+        <section class="water-heater-installation-content">
+            <h1>Water Heater Installation & Replacement Services</h1>
+            <p>
+                Proper water heater installation is key to ensuring your system operates efficiently and safely. Whether you're upgrading an old unit or installing a new one, we offer professional services to get your water heater up and running quickly.
+            </p>
+            <p>
+                From traditional tank models to modern tankless systems, our team is equipped with the skills and tools to handle any water heater installation or replacement. We ensure that your installation adheres to all safety standards and manufacturer guidelines.
+            </p>
+
+            <h2>Why Choose Us? </h2>
+            <ul>
+                <li>Experienced Professionals: Our certified technicians have extensive experience in water heater installations and replacements.</li>
+                <li>Energy-Efficient Solutions: We install water heaters that help reduce energy costs while providing consistent hot water.</li>
+                <li>Upfront Pricing: You’ll know exactly how much your installation will cost, with no hidden fees or surprise charges.</li>
+                <li>Timely Service: We respect your time and ensure your new water heater is installed efficiently and safely.</li>
+                <li>Comprehensive Warranty: All installations come with a full warranty, so you can rest assured your system will run smoothly for years to come.</li>
+            </ul>
+        </section>
+
+        <!-- Form Section -->
+        <section class="quote-form-container">
+            <h2>Get a Price Estimate</h2>
+
+            <form id="waterHeaterForm">
+                <!-- Contact Information -->
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+                <label for="address">Address (including unit number if applicable):</label>
+                <input type="text" id="address" name="address" required>
+
+                <!-- Type of Water Heater -->
+                <label for="heaterType">What type of water heater do you need installed?</label>
+                <select id="heaterType" name="heaterType" required>
+                    <option value="traditionalTank">Traditional Tank</option>
+                    <option value="tankless">Tankless Water Heater</option>
+                    <option value="solarHeater">Solar Water Heater</option>
+                    <option value="heatPumpHeater">Heat Pump Water Heater</option>
+                </select>
+
+                <!-- Old Heater Replacement -->
+                <label for="replacement">Is this a replacement for an old heater?</label>
+                <select id="replacement" name="replacement" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No, it's a new installation</option>
+                </select>
+
+                <!-- Access to Heater Location -->
+                <label for="accessDetails">Is the heater location easy to access? (Yes/No, and details if relevant):</label>
+                <input type="text" id="accessDetails" name="accessDetails" placeholder="Yes/No. Please specify any difficulties.">
+
+                <!-- Preferred Time for Service -->
+                <label for="preferredTime">Preferred Time for Installation:</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Request</button>
+            </form>
+
+            <div id="priceOutput" class="price-output"></div>
+            <div id="booking-button-container"></div> <!-- Placeholder for the "Book This Service" button -->
+    </div>
+
+    <script>
+        document.getElementById('waterHeaterForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for calculation
+
+            // Get values from the form
+            const heaterType = document.getElementById('heaterType').value;
+            const replacement = document.getElementById('replacement').value;
+            const accessDetails = document.getElementById('accessDetails').value;
+            const preferredTime = document.getElementById('preferredTime').value; // Get the time
+
+            // Base rate calculation
+            const baseRate = heaterType === 'tankless' || heaterType === 'solarHeater' ? 300 : 200; // Tankless and solar are more expensive
+            let replacementCost = replacement === 'yes' ? 100 : 0; // Extra cost for removing old heater
+
+            // Additional cost for hard-to-access heater locations
+            let accessCost = accessDetails.toLowerCase().includes('no') ? 50 : 0;
+
+            // Calculate total cost
+            const totalCost = baseRate + replacementCost + accessCost;
+
+            // VAT Calculation (15% of totalCost)
+            const vat = totalCost * 0.15;
+            
+            // Service Fee
+            const serviceFee = 200;
+
+            // Calculate Total Amount
+            const totalAmount = totalCost + vat + serviceFee;
+            
+            // Display the calculated price and preferred time
+            document.getElementById('priceOutput').innerHTML = `
+                <h3>Estimated Price for Water Heater Installation</h3>
+                <p>The estimated cost for your water heater installation is <strong>$${totalCost.toFixed(2)}</strong>.</p>
+                <p>Your preferred time for installation is: <strong>${preferredTime}</strong>.</p>
+            `;
+
+            // Create the "Book This Service" button if not already created
+            const bookingContainer = document.getElementById('booking-button-container');
+            bookingContainer.innerHTML = ''; 
+            
+            // Clear previous button if any
+            const bookButton = document.createElement('button');
+            bookButton.textContent = "Book This Service";
+            bookButton.style.cssText = 'margin-top: 20px; padding: 10px 20px; background-color: green; color: white; border: none; cursor: pointer;';
+            
+            // Set button to navigate to the booking page with total amount, VAT, and service fee in URL params (or save to localStorage for access)
+            bookButton.onclick = function() {
+                // Saving details to localStorage for easy retrieval on the booking page
+                localStorage.setItem('totalCost', totalCost);
+                localStorage.setItem('vat', vat);
+                localStorage.setItem('serviceFee', serviceFee);
+                localStorage.setItem('totalAmount', totalAmount);
+                
+                window.location.href = "../../Bookings/reserve_service.html";
+                    };
+            
+                    // Add the button to the container
+                    bookingContainer.appendChild(bookButton);
+                });
+            </script>
+
+</body>
+</html>

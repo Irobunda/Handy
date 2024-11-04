@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Handyman Services</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="logo">
+            <a href="#" class="home-link">Handyman</a>
+        </div>
+        <nav class="nav-links">
+            <a href="#">Services</a>
+            <a href="#">Visitor</a>
+            <a href="#">Become a Pro</a>
+            <a href="#">FAQ</a>
+        </nav>
+    </header>
+
+    <!-- Landing Section with Full-Screen Image and Text Overlay -->
+    <div class="container">
+        <!-- Text Overlay on the Image -->
+        <div class="text-block">
+            <div class="hover">
+                <h3>Plumbing</h3>
+                <p class="plumbing" onclick="window.location.href='https://plumbingcom.com';">
+                    Expert solutions for all your plumbing needs!</p>
+            </div>
+            
+            <div class="hover">
+                <h3>Electrical Work</h3>
+                <p class="Electrical" onclick="window.location.href='https://electriccom.com';">
+                    AReliable electrical services at your fingertips!</p>
+            </div>
+            
+            <div class="hover">
+                <h3>Cleaning</h3>
+                <p class="Cleaning" onclick="window.location.href='https://cleaningcom.com';">
+                    Sparkling clean, every time. We’ve got you covered!</p>
+            </div>
+            
+            <div class="hover">
+                <h3>Repairs</h3>
+                <p class="Repair" onclick="window.location.href='https://repaircom.com';">
+                    From quick fixes to major repairs, we do it all!
+                </p>
+            </div>
+            
+            <div class="hover" onmouseover="showImage('img_carpentry.jpg')" onmouseout="hideImage()">
+                <h3>Carpentry</h3>
+                <p class="carpentry" onclick="window.location.href='https://carpentrycom.com';">
+                    Skilled craftsmanship for any carpentry project.
+                </p>
+            </div>
+            
+            <div class="hover" onmouseover="showImage('img_handyman.jpg')" onmouseout="hideImage()">
+                <h3>General Handyman</h3>
+                <p class="Handy" onclick="window.location.href='https://handymancom.com';">
+                    Your go-to for any odd jobs or home improvements!
+                </p>
+            </div>
+        </div>
+        <!-- Text Overlay on the Image -->
+<div class="text-block">
+    <div class="hover" onmouseover="showImage('img_plumber.jpg')" onmouseout="hideImage()">
+        <h3>Plumbing</h3>
+        <p class="plumbing">All your plumbing needs</p>
+    </div>
+
+    <div class="hover" onmouseover="showImage('img_electric.jpg')" onmouseout="hideImage()">
+        <h3>Electrical Work</h3>
+        <p class="Electrical">All your electrical needs</p>
+    </div>
+
+    <div class="hover" onmouseover="showImage('img_cleaning.jpg')" onmouseout="hideImage()">
+        <h3>Cleaning</h3>
+        <p class="Cleaning">All your cleaning needs</p>
+    </div>
+
+    <div class="hover" onmouseover="showImage('img_repair.jpg')" onmouseout="hideImage()">
+        <h3>Repairs</h3>
+        <p class="Repair">All your repair needs</p>
+    </div>
+
+        <h3>Carpentry</h3>
+        <p class="carpentry">All your carpentry needs</p>
+    </div>
+
+
+
+
+                <!-- Summary text on the bottom-left side -->
+        <div class="summary-text">
+           <h3> One Stop, All Solutions</h3>
+        <p>The ultimate platform for all your handyman and home service needs! </p>
+    </div>
+        
+                    <!-- Footer-like text at the bottom right inside the container -->
+            <div class="footer-text">
+                @KoalaTech Enterprise
+            </div>
+    </div>
+    
+    <!-- Add JavaScript to handle image change -->
+    <script>
+        function showImage(imagePath) {
+            var imageElement = document.getElementById('service-image');
+            imageElement.src = 'images/' + imagePath;
+            imageElement.style.display = 'block'; // Show the image when hovering
+        }
+
+        function hideImage() {
+            var imageElement = document.getElementById('service-image');
+            imageElement.style.display = 'none'; // Hide the image when not hovering
+        }
+    </script>
+
+</body>
+</html>

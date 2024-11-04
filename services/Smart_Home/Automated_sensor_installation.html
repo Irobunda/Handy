@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home Automation</title>
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+
+    <div id="header-placeholder"></div> <!-- Placeholder for header -->
+    <!-- Load header with JavaScript -->
+    <script>
+        fetch('../../header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
+
+     <!-- Banner Image -->
+     <section class="banner">
+        <img src="../../images/smart_home.jpg" alt="Automated and Sensor Installation Banner" class="banner-image">
+    </section>
+
+    <!-- Main Content for Home Automation -->
+    <div class="content-flex-container">
+        <!-- Automated and Sensor Installation Content -->
+        <section class="automated-sensor-content">
+            <h1>Home Automation</h1>
+            <p>
+                Transform your home or office into a smart space with our Home Automation. Whether you're looking to install motion sensors, lighting sensors, or a full smart home system, we have the expertise to make your space smarter, safer, and more energy-efficient.
+            </p>
+            <p>
+                Our team is experienced with a variety of smart technologies, including thermostats, doorbell cameras, smart locks, automated lighting, and motion detection systems. We ensure seamless installation and integration with your existing systems, ensuring you have full control through your smartphone or tablet.
+            </p>
+
+            <h2>Why Choose Us?</h2>
+            <ul>
+                <li>Expert Installation: Our team is experienced in a wide range of smart devices and sensor systems.</li>
+                <li>Full Integration: We ensure your new devices work seamlessly with your existing smart home infrastructure.</li>
+                <li>Energy Efficiency: We help you install systems that save energy and reduce your carbon footprint.</li>
+                <li>Enhanced Security: Secure your property with the latest in smart home security and sensor technologies.</li>
+                <li>Transparent Pricing: Upfront pricing with no hidden fees.</li>
+            </ul>
+        </section>
+
+        <!-- Form Section -->
+        <section class="quote-form-container">
+            <h2>Get a Price Estimate </h2>
+
+            <form id="automatedSensorForm">
+                <!-- Contact Information -->
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+                <label for="address">Address (including unit number if applicable):</label>
+                <input type="text" id="address" name="address" required>
+
+                <!-- Type of Automation or Sensor System -->
+                <label for="installationType">What type of system would you like to install?</label>
+                <select id="installationType" name="installationType" required>
+                    <option value="motionSensor">Motion Sensor</option>
+                    <option value="lightingSensor">Lighting Sensor</option>
+                    <option value="smartThermostat">Smart Thermostat</option>
+                    <option value="smartLocks">Smart Locks</option>
+                    <option value="securityCameras">Security Cameras</option>
+                    <option value="smartHomeSystem">Full Smart Home System</option>
+                    <option value="other">Other (specify below)</option>
+                </select>
+                <input type="text" id="otherInstallation" name="otherInstallation" placeholder="If other, please specify">
+
+                <!-- Number of Devices to Install -->
+                <label for="deviceCount">How many devices do you need to install?</label>
+                <input type="number" id="deviceCount" name="deviceCount" min="1" required>
+
+                <!-- Access to Installation Site -->
+                <label for="accessDetails">Is the installation site easy to access? (Yes/No, and details if relevant):</label>
+                <input type="text" id="accessDetails" name="accessDetails" placeholder="Yes/No. Please specify any difficulties.">
+
+                <!-- Preferred Time for Service -->
+                <label for="preferredTime">Preferred Time for Service:</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Request</button>
+            </form>
+
+            <div id="priceOutput" class="price-output"></div>
+            <div id="booking-button-container"></div> <!-- Placeholder for the "Book This Service" button -->
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('automatedSensorForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for calculation
+
+            // Get values from the form
+            const installationType = document.getElementById('installationType').value;
+            const deviceCount = document.getElementById('deviceCount').value;
+            const accessDetails = document.getElementById('accessDetails').value;
+            const preferredTime = document.getElementById('preferredTime').value; // Get the time
+
+            // Base rate calculation
+            const baseRate = installationType === 'smartHomeSystem' ? 500 : 250;
+            let deviceCost = deviceCount * 50; // Charge $50 per device installation
+            let accessCost = accessDetails.toLowerCase().includes('no') ? 50 : 0; // Extra charge for hard-to-access sites
+
+            // Calculate total cost
+            const totalCost = baseRate + deviceCost + accessCost;
+            // VAT Calculation (15% of totalCost)
+            const vat = totalCost * 0.15;
+            
+            // Service Fee
+            const serviceFee = 200;
+
+            // Calculate Total Amount
+            const totalAmount = totalCost + vat + serviceFee;
+
+            // Display the calculated price and preferred time
+            document.getElementById('priceOutput').innerHTML = `
+                <h3>Estimated Price for Automated and Sensor Installation</h3>
+                <p>The estimated cost for your installation service is <strong>$${totalCost.toFixed(2)}</strong>.</p>
+                <p>Your preferred time for service is: <strong>${preferredTime}</strong>.</p>
+            `;
+            // Create the "Book This Service" button if not already created
+            const bookingContainer = document.getElementById('booking-button-container');
+            bookingContainer.innerHTML = ''; 
+            
+            // Clear previous button if any
+            const bookButton = document.createElement('button');
+            bookButton.textContent = "Book This Service";
+            bookButton.style.cssText = 'margin-top: 20px; padding: 10px 20px; background-color: green; color: white; border: none; cursor: pointer;';
+            
+            // Set button to navigate to the booking page with total amount, VAT, and service fee in URL params (or save to localStorage for access)
+            bookButton.onclick = function() {
+                // Saving details to localStorage for easy retrieval on the booking page
+                localStorage.setItem('totalCost', totalCost);
+                localStorage.setItem('vat', vat);
+                localStorage.setItem('serviceFee', serviceFee);
+                localStorage.setItem('totalAmount', totalAmount);
+                
+                window.location.href = "../../Bookings/reserve_service.html";
+                    };
+            
+                    // Add the button to the container
+                    bookingContainer.appendChild(bookButton);
+                });
+            </script>
+    
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Security Systems Installation Services</title>
+    <link rel="stylesheet" href="../../styles.css"> <!-- Adjust path if necessary -->
+</head>
+<body>
+
+<div id="header-placeholder"></div> <!-- Placeholder for header -->
+    <!-- Load header with JavaScript -->
+    <script>
+        fetch('../../header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
+
+
+    <!-- Banner Image -->
+    <section class="banner">
+        <img src="../../images/smart_home.jpg" alt="Automated and Sensor Installation Banner" class="banner-image">
+    </section>
+
+    <!-- Main Content for Security Systems Installation Services -->
+    <div class="content-flex-container">
+        <!-- Security Systems Content -->
+        <section class="security-systems-content">
+            <h1>Security Systems Installation Services</h1>
+            <p>
+                Protect your home or business with our comprehensive security system installation services. Whether you need a full security system with cameras, motion detectors, or an alarm system, our expert team will customize the installation based on your unique needs.
+            </p>
+            <p>
+                We install state-of-the-art security systems that ensure 24/7 monitoring, alerting you and the authorities if any suspicious activity occurs. Our solutions range from small home systems to fully integrated commercial security networks.
+            </p>
+
+            <h2>Why Choose Us for Security Systems Installation?</h2>
+            <ul>
+                <li>Professional Installation: Our certified technicians are experienced in installing all kinds of security systems.</li>
+                <li>Tailored Solutions: We offer customized security systems for both residential and commercial properties.</li>
+                <li>Advanced Technology: We install the latest in motion detectors, cameras, alarm systems, and remote monitoring solutions.</li>
+                <li>24/7 Monitoring: We integrate security systems with monitoring services for round-the-clock protection.</li>
+                <li>Transparent Pricing: Competitive pricing with no hidden fees or surprise costs.</li>
+            </ul>
+        </section>
+
+        <!-- Form Section -->
+        <section class="quote-form-container">
+            <h2>Get a Price Estimate for Security Systems Installation</h2>
+
+            <form id="securitySystemsForm">
+                <!-- Contact Information -->
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+                <label for="address">Address (including unit number if applicable):</label>
+                <input type="text" id="address" name="address" required>
+
+                <!-- Type of Property -->
+                <label for="propertyType">Is the installation for a residential or commercial property?</label>
+                <select id="propertyType" name="propertyType" required>
+                    <option value="residential">Residential</option>
+                    <option value="commercial">Commercial</option>
+                </select>
+
+                <!-- Number of Cameras -->
+                <label for="cameraCount">How many security cameras would you like to install?</label>
+                <input type="number" id="cameraCount" name="cameraCount" min="1" required>
+
+                <!-- Security Features -->
+                <label for="securityFeatures">What additional features would you like?</label>
+                <select id="securityFeatures" name="securityFeatures" multiple required>
+                    <option value="motionDetectors">Motion Detectors</option>
+                    <option value="alarmSystem">Alarm System</option>
+                    <option value="smartLocks">Smart Locks</option>
+                    <option value="remoteMonitoring">Remote Monitoring</option>
+                </select>
+
+                <!-- Access to Installation Site -->
+                <label for="accessDetails">Is the installation site easy to access? (Yes/No, and details if relevant):</label>
+                <input type="text" id="accessDetails" name="accessDetails" placeholder="Yes/No. Please specify any difficulties.">
+
+                <!-- Preferred Time for Service -->
+                <label for="preferredTime">Preferred Time for Service:</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Request</button>
+            </form>
+
+            <div id="priceOutput" class="price-output"></div>
+            <div id="booking-button-container"></div> <!-- Placeholder for the "Book This Service" button -->
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('securitySystemsForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for calculation
+
+            // Get values from the form
+            const propertyType = document.getElementById('propertyType').value;
+            const cameraCount = document.getElementById('cameraCount').value;
+            const securityFeatures = document.getElementById('securityFeatures').selectedOptions;
+            const accessDetails = document.getElementById('accessDetails').value;
+            const preferredTime = document.getElementById('preferredTime').value; // Get the time
+
+            // Base rate calculation
+            const baseRate = propertyType === 'commercial' ? 600 : 400;
+            let cameraCost = cameraCount * 100; // Charge $100 per camera installation
+            let featuresCost = 0;
+            for (let i = 0; i < securityFeatures.length; i++) {
+                if (securityFeatures[i].value === 'motionDetectors' || securityFeatures[i].value === 'alarmSystem') {
+                    featuresCost += 150;
+                } else if (securityFeatures[i].value === 'smartLocks') {
+                    featuresCost += 100;
+                } else if (securityFeatures[i].value === 'remoteMonitoring') {
+                    featuresCost += 200;
+                }
+            }
+            let accessCost = accessDetails.toLowerCase().includes('no') ? 50 : 0; // Extra charge for hard-to-access sites
+
+            // Calculate total cost
+            const totalCost = baseRate + cameraCost + featuresCost + accessCost;
+
+            // VAT Calculation (15% of totalCost)
+            const vat = totalCost * 0.15;
+            
+            // Service Fee
+            const serviceFee = 200;
+
+            // Calculate Total Amount
+            const totalAmount = totalCost + vat + serviceFee;
+
+            // Display the calculated price and preferred time
+            document.getElementById('priceOutput').innerHTML = `
+                <h3>Estimated Price for Security Systems Installation</h3>
+                <p>The estimated cost for your security system installation is <strong>$${totalCost.toFixed(2)}</strong>.</p>
+                <p>Your preferred time for service is: <strong>${preferredTime}</strong>.</p>
+            `;
+
+            // Create the "Book This Service" button if not already created
+            const bookingContainer = document.getElementById('booking-button-container');
+            bookingContainer.innerHTML = ''; 
+            
+            // Clear previous button if any
+            const bookButton = document.createElement('button');
+            bookButton.textContent = "Book This Service";
+            bookButton.style.cssText = 'margin-top: 20px; padding: 10px 20px; background-color: green; color: white; border: none; cursor: pointer;';
+            
+            // Set button to navigate to the booking page with total amount, VAT, and service fee in URL params (or save to localStorage for access)
+            bookButton.onclick = function() {
+                // Saving details to localStorage for easy retrieval on the booking page
+                localStorage.setItem('totalCost', totalCost);
+                localStorage.setItem('vat', vat);
+                localStorage.setItem('serviceFee', serviceFee);
+                localStorage.setItem('totalAmount', totalAmount);
+                
+                window.location.href = "../../Bookings/reserve_service.html";
+                    };
+            
+                    // Add the button to the container
+                    bookingContainer.appendChild(bookButton);
+                });
+            </script>
+
+</body>
+</html>

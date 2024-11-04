@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Furniture Assembly and Moving Services</title>
+    <link rel="stylesheet" href="../../styles.css"> <!-- Adjust path if necessary -->
+</head>
+<body>
+
+
+    <div id="header-placeholder"></div> <!-- Placeholder for header -->
+    <!-- Load header with JavaScript -->
+    <script>
+        fetch('../../header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
+
+    <!-- Banner Image -->
+    <section class="banner">
+        <img src="../../images/handy_service.jpg" alt="Fixture Installation Banner" class="banner-image">
+    </section>
+
+    <!-- Main Content for Furniture Assembly and Moving Services -->
+    <div class="content-flex-container">
+        <!-- Furniture Assembly and Moving Content -->
+        <section class="furniture-assembly-content">
+            <h1>Furniture Assembly and Moving Services</h1>
+            <p>
+                Whether you're moving into a new home or need help assembling furniture, we provide efficient and reliable services for all your needs. From complex furniture assembly to moving heavy items between rooms, our team is here to make the process stress-free.
+            </p>
+            <p>
+                We handle everything from IKEA assembly to moving large custom furniture pieces, ensuring that each item is assembled correctly and securely. If you’re moving, we also assist with careful disassembly, transport, and reassembly of your furniture at the new location.
+            </p>
+
+            <h2>Why Choose Us ?</h2>
+            <ul>
+                <li>Expert Assembly: We are experienced in assembling all types of furniture, including flat-pack items and custom pieces.</li>
+                <li>Careful Moving: We handle your furniture with care, ensuring it is properly packed and transported to avoid any damage.</li>
+                <li>Disassembly and Reassembly: We make moving easier by taking care of the disassembly and reassembly of your furniture at the new location.</li>
+                <li>Flexible Scheduling: We work around your schedule to provide prompt and efficient service.</li>
+                <li>Upfront Pricing: Transparent pricing with no hidden fees.</li>
+            </ul>
+        </section>
+
+        <!-- Form Section -->
+        <section class="quote-form-container">
+            <h2>Get a Price Estimate </h2>
+
+            <form id="furnitureAssemblyForm">
+                <!-- Contact Information -->
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+                                
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="address">Current Address:</label>
+                <input type="text" id="address" name="address" required>
+
+                <!-- Type of Service -->
+                <label for="serviceType">What type of service do you need?</label>
+                <select id="serviceType" name="serviceType" required>
+                    <option value="assembly">Furniture Assembly</option>
+                    <option value="moving">Furniture Moving</option>
+                    <option value="both">Both Assembly and Moving</option>
+                </select>
+
+                <!-- Number of Furniture Pieces -->
+                <label for="furnitureCount">How many pieces of furniture?</label>
+                <input type="number" id="furnitureCount" name="furnitureCount" min="1" required>
+
+                <!-- Special Requirements -->
+                <label for="specialRequirements">Any special requirements for the furniture or location?</label>
+                <input type="text" id="specialRequirements" name="specialRequirements" placeholder="Please specify if needed">
+
+                <!-- Preferred Time for Service -->
+                <label for="preferredTime">Preferred Time for Service:</label>
+                <input type="time" id="preferredTime" name="preferredTime" required>
+
+                <!-- Submit Button -->
+                <button type="submit">Submit Request</button>
+            </form>
+
+            <div id="priceOutput" class="price-output"></div>
+            <div id="booking-button-container"></div> <!-- Placeholder for the "Book This Service" button -->
+
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('furnitureAssemblyForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for calculation
+
+            // Get values from the form
+            const serviceType = document.getElementById('serviceType').value;
+            const furnitureCount = document.getElementById('furnitureCount').value;
+            const specialRequirements = document.getElementById('specialRequirements').value;
+            const preferredTime = document.getElementById('preferredTime').value; // Get the time
+
+            // Base rate calculation
+            const baseRate = serviceType === 'both' ? 150 : serviceType === 'moving' ? 100 : 75;
+            let furnitureCost = furnitureCount * baseRate;
+            let customCost = specialRequirements ? 50 : 0; // Extra charge for special installations or moving needs
+
+            // Calculate total cost
+            const totalCost = furnitureCost + customCost;
+
+            // VAT Calculation (15% of totalCost)
+            const vat = totalCost * 0.15;
+            
+            // Service Fee
+            const serviceFee = 200;
+
+            // Calculate Total Amount
+            const totalAmount = totalCost + vat + serviceFee;
+            // Display the calculated price and preferred time
+            document.getElementById('priceOutput').innerHTML = `
+                <h3>Estimated Price for Furniture Assembly and Moving Services</h3>
+                <p>The estimated cost for your service is <strong>$${totalCost.toFixed(2)}</strong>.</p>
+                <p>Your preferred time for service is: <strong>${preferredTime}</strong>.</p>
+            `;
+
+            // Create the "Book This Service" button if not already created
+            const bookingContainer = document.getElementById('booking-button-container');
+            bookingContainer.innerHTML = ''; 
+            
+            // Clear previous button if any
+            const bookButton = document.createElement('button');
+            bookButton.textContent = "Book This Service";
+            bookButton.style.cssText = 'margin-top: 20px; padding: 10px 20px; background-color: green; color: white; border: none; cursor: pointer;';
+            
+            // Set button to navigate to the booking page with total amount, VAT, and service fee in URL params (or save to localStorage for access)
+            bookButton.onclick = function() {
+                // Saving details to localStorage for easy retrieval on the booking page
+                localStorage.setItem('totalCost', totalCost);
+                localStorage.setItem('vat', vat);
+                localStorage.setItem('serviceFee', serviceFee);
+                localStorage.setItem('totalAmount', totalAmount);
+                
+                window.location.href = "../../Bookings/reserve_service.html";
+                    };
+            
+                    // Add the button to the container
+                    bookingContainer.appendChild(bookButton);
+                });
+            </script>
+</body>
+</html>

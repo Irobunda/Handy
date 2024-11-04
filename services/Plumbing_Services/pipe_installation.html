@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pipe Installation</title>
+    <link rel="stylesheet" href="../../styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+
+
+    <div id="header-placeholder"></div> <!-- Placeholder for header -->
+    <!-- Load header with JavaScript -->
+    <script>
+        fetch('../../header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
+    
+     <!-- Banner Image -->
+     <section class="banner">
+        <img src="../../images/pipe_installation_banner.jpg" alt="Pipe Installation Banner" class="banner-image">
+    </section>
+  <!-- Main Flex Container (Text on the left, Form on the right) -->
+  <div class="content-flex-container">
+    <!-- Pipe Installation Content (flows naturally as part of the page) -->
+    <section class="pipe-installation-content">
+        <h1>Pipe Installation Services</h1>
+        <p>
+            When it comes to ensuring a reliable plumbing system, it’s essential to trust professionals who understand the complexities of pipe installations. Whether you’re upgrading your home’s system or tackling a new construction project, our expert team is equipped with the knowledge and tools to get the job done right.
+        </p>
+        <p>
+            We offer comprehensive pipe installation services, from initial assessments and planning to the final connection of pipes and fixtures. Our team uses only the highest quality materials to ensure long-lasting performance, while also adhering to all local codes and safety standards.
+        </p>
+    
+        <h2>Why Choose Us?</h2>
+        <ul>
+            <li>Experienced Professionals: Our plumbers bring years of experience, ensuring precision in every installation.</li>
+            <li>Upfront Pricing: No hidden fees—what you see is what you pay. We provide clear and transparent quotes so you can plan accordingly.</li>
+            <li>Timely Service: We respect your time and guarantee efficient installation services that meet your scheduling needs.</li>
+            <li>Comprehensive Warranty: We stand behind our work with robust warranties, giving you peace of mind knowing your system is built to last.</li>
+            <li>24/7 Availability: Plumbing emergencies can happen anytime. We offer flexible scheduling to fit your needs, including after-hours support for urgent issues.</li>
+        </ul>
+    </section>
+    
+
+    <!-- Form Section (distinct container) -->
+    <section class="quote-form-container">
+        <h2>Get a Price Estimate</h2>
+
+        <form id="pipeForm">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required>
+
+            <label for="address">Service Address:</label>
+            <input type="text" id="address" name="address" placeholder="Enter your address" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+            <label for="jobType">Select the Pipe Service Type:</label>
+            <select id="jobType" name="jobType" required>
+                <option value="" disabled selected>Select a service</option>
+                <option value="newResidential">New Residential Plumbing Installation</option>
+                <option value="newCommercial">New Commercial Plumbing Installation</option>
+                <option value="outdoorInstallation">Outdoor Pipe Installation</option>
+                <option value="pipeLeakRepair">Pipe Leak Repair</option>
+                <option value="drainageRepair">Drainage Pipe Repair/Replacement</option>
+                <option value="waterHeaterInstallation">Water Heater Installation</option>
+                <option value="applianceHookUp">Appliance Hook-Up</option>
+                <option value="bathroomRemodeling">Bathroom Remodeling Pipe Work</option>
+                <option value="kitchenRemodeling">Kitchen Remodeling Pipe Work</option>
+            </select>
+
+            <!--Outdoor or indoor -->
+            <label for="jobLocation">Select Job Location:</label>
+            <select id="jobLocation" name="jobLocation" required>
+                <option value="" disabled selected>Select Location Type</option>
+                <option value="indoor">Indoor</option>
+                <option value="outdoor">Outdoor</option>
+            </select>
+
+              <!-- Accessiblity-->
+            <label for="accessibility">Select Accessibility Level:</label>
+            <select id="accessibility" name="accessibility" required>
+                <option value="" disabled selected>Select Accessibility</option>
+                <option value="easy">Easy Access</option>
+                <option value="medium">Medium Access</option>
+                <option value="hard">Hard to Access</option>
+            </select>
+
+            <!-- Preferred Time for Service -->
+            <label for="preferredTime">Preferred Time for Service:</label>
+            <input type="time" id="preferredTime" name="preferredTime" required>
+
+            <!-- Submit Button -->
+             <button type="submit">Submit Request</button>        
+            </form>
+
+        <div id="priceOutput" class="price-output"></div>
+        <div id="booking-button-container"></div> <!-- Placeholder for the "Book This Service" button -->
+    </section>
+  </div>
+
+    <script>
+           document.getElementById('pipeForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission for calculation
+    
+            // Get values from the form     
+            const jobType = document.getElementById('jobType').value;
+            const jobLocation = document.getElementById('jobLocation').value;
+            const accessibility = document.getElementById('accessibility').value;
+            const preferredTime = document.getElementById('preferredTime').value;
+
+             // Define base rates and multipliers for job types
+            const jobRates = {
+                newResidential: 150,
+                newCommercial: 200,
+                outdoorInstallation: 180,
+                pipeLeakRepair: 100,
+                drainageRepair: 120,
+                waterHeaterInstallation: 220,
+                applianceHookUp: 100,
+                bathroomRemodeling: 170,
+                kitchenRemodeling: 170
+            };
+
+            const accessibilityMultiplier = {
+                easy: 1.0,
+                medium: 1.2,
+                hard: 1.5
+            };
+
+            // Location multiplier to adjust costs for outdoor work
+            const locationMultiplier = jobLocation === "outdoor" ? 1.2 : 1.0;
+                
+            // Placeholder for distance charge, set to 0 as default or calculate based on location
+            const distanceCharge = 0;
+
+            
+            // Base rate calculation with accessibility and location multipliers
+            const baseRate = jobRates[jobType] || 0;
+            const totalCost = baseRate  * accessibilityMultiplier[accessibility] * locationMultiplier + distanceCharge;
+            
+            // VAT Calculation (15% of totalCost)
+            const vat = totalCost * 0.15;
+
+            // Service Fee
+            const serviceFee = 200;
+
+            // Calculate Total Amount
+            const totalAmount = totalCost + vat + serviceFee;
+
+            // Output the price
+            document.getElementById('priceOutput').innerHTML = `
+            <h3>Estimated Price for Pipe Installation Services</h3>
+            <p>The estimated cost for your <strong>${jobLocation}</strong> pipe installaion service is <strong>$${totalCost.toFixed(2)}</strong></p>
+            <p>Your preferred time for service is: <strong>${preferredTime}</strong>.</p> `;
+
+
+            // Create the "Book This Service" button if not already created
+            const bookingContainer = document.getElementById('booking-button-container');
+            bookingContainer.innerHTML = ''; 
+            
+            // Clear previous button if any
+            const bookButton = document.createElement('button');
+            bookButton.textContent = "Book This Service";
+            bookButton.style.cssText = 'margin-top: 20px; padding: 10px 20px; background-color: green; color: white; border: none; cursor: pointer;';
+            
+            // Set button to navigate to the booking page with total amount, VAT, and service fee in URL params (or save to localStorage for access)
+            bookButton.onclick = function() {
+                // Saving details to localStorage for easy retrieval on the booking page
+                localStorage.setItem('totalCost', totalCost);
+                localStorage.setItem('vat', vat);
+                localStorage.setItem('serviceFee', serviceFee);
+                localStorage.setItem('totalAmount', totalAmount);
+                
+                window.location.href = "../../Bookings/reserve_service.html";
+                    };
+            
+                    // Add the button to the container
+                    bookingContainer.appendChild(bookButton);
+                });
+            </script>
+    
+
+</body>
+</html>
