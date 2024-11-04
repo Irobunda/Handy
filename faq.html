@@ -9,18 +9,17 @@
 </head>
 <body>
 
-   <!-- Header -->
-   <header class="main-header">
-    <div class="logo">
-        <a href="index.html" class="home-link">Handyman</a>
-    </div>
-    <nav class="nav-links">
-        <a href="service.html">Services</a>
-        <a href="#">Visitor</a>
-        <a href="#">Become a Pro</a>
-        <a href="faq.html">FAQ</a>
-    </nav>
-</header>
+
+    <div id="header-placeholder"></div> <!-- Placeholder for header -->
+    <!-- Load header with JavaScript -->
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header:', error));
+    </script>
 
     <!-- FAQ Section -->
     <main class="main-content">  
